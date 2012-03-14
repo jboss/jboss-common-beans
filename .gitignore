@@ -12,7 +12,7 @@ target
 *.iml
 *.ipr
 *.iws
-.idea
+/.idea
 # ignore NetBeans files
 nbactions.xml
 nb-configuration.xml

@@ -21,7 +21,6 @@
  */
 package org.jboss.common.beans.property;
 
-import java.beans.PropertyEditorSupport;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -29,14 +28,14 @@ import java.net.UnknownHostException;
  * A property editor for {@link java.net.InetAddress}.
  *
  * @author baranowb
+ * @author <a href="mailto:cdewolf@redhat.com">Carlo de Wolf</a>
  */
-public class InetAddressEditor extends PropertyEditorSupport {
-
+public class InetAddressEditor extends PropertyEditorSupport<InetAddress> {
     @Override
     public void setAsText(final String text) throws IllegalArgumentException {
         try {
             if (PropertyEditors.isNull(text)) {
-                super.setValue(null);
+                setValue(null);
                 return;
             }
             String value = text;
@@ -45,15 +44,15 @@ public class InetAddressEditor extends PropertyEditorSupport {
                 // /127.0.0.1 and the getByNames barfs on the slash - JGH
                 value = text.substring(1);
             }
-            super.setValue(InetAddress.getByName(PropertiesValueResolver.replaceProperties(value)));
+            setValue(InetAddress.getByName(PropertiesValueResolver.replaceProperties(value)));
         } catch (UnknownHostException e) {
-            throw new IllegalArgumentException("Failed to parse to InetAddress!", e);
+            throw new IllegalArgumentException("Failed to parse: " + text, e);
         }
     }
 
     @Override
     public String getAsText() {
-        InetAddress inetAddress = (InetAddress) getValue();
+        InetAddress inetAddress = getValue();
         if (inetAddress == null) {
             return "";
         }
@@ -70,6 +69,10 @@ public class InetAddressEditor extends PropertyEditorSupport {
         } else {
             return tokens[1];
         }
+    }
 
+    @Override
+    public void setValue(final Object value) {
+        super.setValue(InetAddress.class, value);
     }
 }
