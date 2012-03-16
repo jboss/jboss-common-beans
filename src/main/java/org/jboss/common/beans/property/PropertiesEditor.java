@@ -21,7 +21,6 @@
  */
 package org.jboss.common.beans.property;
 
-import java.beans.PropertyEditorSupport;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -32,7 +31,12 @@ import java.util.Properties;
  * @author baranowb
  */
 @SuppressWarnings("unchecked")
-public class PropertiesEditor extends PropertyEditorSupport {
+public class PropertiesEditor extends PropertyEditorSupport<Properties> {
+
+    public PropertiesEditor() {
+        super(Properties.class);
+    }
+
     @Override
     public void setAsText(final String text) {
         if (PropertyEditors.isNull(text)) {

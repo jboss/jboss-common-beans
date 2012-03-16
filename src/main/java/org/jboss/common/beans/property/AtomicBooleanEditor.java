@@ -21,22 +21,27 @@
  */
 package org.jboss.common.beans.property;
 
-import java.beans.PropertyEditorSupport;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * AtomicBoolean property editor.
  *
  * @author <a href="mailto:ales.justin@jboss.com">Ales Justin</a>
+ * @author baranowb
  */
-public class AtomicBooleanEditor extends PropertyEditorSupport {
+public class AtomicBooleanEditor extends PropertyEditorSupport<AtomicBoolean> {
+
+    public AtomicBooleanEditor() {
+        super(AtomicBoolean.class);
+    }
+
     private static final String[] BOOLEAN_TAGS = { "true", "false" };
 
     @Override
     public void setAsText(final String text) {
-        if (PropertyEditors.isNull(text)){
+        if (PropertyEditors.isNull(text)) {
             setValue(null);
-        } else{
+        } else {
             setValue(new AtomicBoolean(Boolean.parseBoolean(text)));
         }
     }

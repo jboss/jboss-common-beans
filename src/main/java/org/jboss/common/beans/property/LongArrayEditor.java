@@ -25,7 +25,12 @@ package org.jboss.common.beans.property;
  * A property editor for long[].
  *
  */
-public class LongArrayEditor extends ArrayPropertyEditorSupport {
+public class LongArrayEditor extends ArrayPropertyEditorSupport<long[]> {
+
+    public LongArrayEditor() {
+        super(long[].class);
+    }
+
     /**
      * Build a long[] from comma or eol seperated elements
      *

@@ -21,14 +21,18 @@
  */
 package org.jboss.common.beans.property;
 
-import java.beans.PropertyEditorSupport;
 
 /**
  * A property editor for {@link Integer}.
  *
  * @author Scott.Stark@jboss.org
  */
-public class DoubleEditor extends PropertyEditorSupport {
+public class DoubleEditor extends PropertyEditorSupport<Double> {
+
+    public DoubleEditor() {
+        super(Double.class);
+    }
+
     /**
      * Map the argument text into and Integer using Integer.valueOf.
      */

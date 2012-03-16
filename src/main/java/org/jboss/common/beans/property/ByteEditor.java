@@ -21,13 +21,17 @@
  */
 package org.jboss.common.beans.property;
 
-import java.beans.PropertyEditorSupport;
-
 /**
  * A property editor for {@link java.lang.Byte}.
  *
  */
-public class ByteEditor extends PropertyEditorSupport {
+public class ByteEditor extends PropertyEditorSupport<Byte> {
+
+    public ByteEditor() {
+        super(Byte.class);
+        // TODO Auto-generated constructor stub
+    }
+
     /**
      * Map the argument text into and Byte using Byte.decode.
      */

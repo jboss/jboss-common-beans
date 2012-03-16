@@ -26,7 +26,12 @@ package org.jboss.common.beans.property;
  *
  * @author baranowb
  */
-public class FloatArrayEditor extends ArrayPropertyEditorSupport {
+public class FloatArrayEditor extends ArrayPropertyEditorSupport<float[]> {
+
+    public FloatArrayEditor() {
+        super(float[].class);
+    }
+
     /**
      * Build a float[] from comma or eol seperated elements
      *

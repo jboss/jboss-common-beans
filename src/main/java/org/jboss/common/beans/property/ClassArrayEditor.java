@@ -26,7 +26,12 @@ package org.jboss.common.beans.property;
  *
  * @author baranowb
  */
-public class ClassArrayEditor extends ArrayPropertyEditorSupport {
+public class ClassArrayEditor extends ArrayPropertyEditorSupport<Class[]> {
+
+    public ClassArrayEditor() {
+        super(Class[].class);
+    }
+
     /**
      * Build a Class[] from comma or eol seperated elements
      *

@@ -21,7 +21,6 @@
  */
 package org.jboss.common.beans.property;
 
-import java.beans.PropertyEditorSupport;
 import java.io.File;
 import java.io.IOException;
 
@@ -30,7 +29,11 @@ import java.io.IOException;
  *
  * @author baranowb
  */
-public class FileEditor extends PropertyEditorSupport {
+public class FileEditor extends PropertyEditorSupport<File> {
+
+    public FileEditor() {
+        super(File.class);
+    }
 
     @Override
     public void setAsText(final String text) {

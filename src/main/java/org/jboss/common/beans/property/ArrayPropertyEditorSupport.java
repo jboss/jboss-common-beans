@@ -22,7 +22,6 @@
 
 package org.jboss.common.beans.property;
 
-import java.beans.PropertyEditorSupport;
 import java.util.StringTokenizer;
 
 /**
@@ -30,7 +29,14 @@ import java.util.StringTokenizer;
  *
  * @author baranowb
  */
-public abstract class ArrayPropertyEditorSupport extends PropertyEditorSupport {
+public abstract class ArrayPropertyEditorSupport<T> extends PropertyEditorSupport<T> {
+    /**
+     * @param type
+     */
+    public ArrayPropertyEditorSupport(Class<T> type) {
+        super(type);
+    }
+
     /*
      * NOTE: not a good place, generics cant be used here, since java primitives cannot be referenced as parametrized type...
      */
@@ -61,7 +67,7 @@ public abstract class ArrayPropertyEditorSupport extends PropertyEditorSupport {
      */
     protected String encode(boolean[] v) {
         if (v == null) {
-            return "";
+            return null;
         }
         StringBuffer text = new StringBuffer();
         int length = v == null ? 0 : v.length;
@@ -81,7 +87,7 @@ public abstract class ArrayPropertyEditorSupport extends PropertyEditorSupport {
      */
     protected String encode(byte[] v) {
         if (v == null) {
-            return "";
+            return null;
         }
         StringBuffer text = new StringBuffer();
         int length = v == null ? 0 : v.length;
@@ -101,7 +107,7 @@ public abstract class ArrayPropertyEditorSupport extends PropertyEditorSupport {
      */
     protected String encode(short[] v) {
         if (v == null) {
-            return "";
+            return null;
         }
         StringBuffer text = new StringBuffer();
         int length = v == null ? 0 : v.length;
@@ -121,7 +127,7 @@ public abstract class ArrayPropertyEditorSupport extends PropertyEditorSupport {
      */
     protected String encode(int[] v) {
         if (v == null) {
-            return "";
+            return null;
         }
         StringBuffer text = new StringBuffer();
         int length = v == null ? 0 : v.length;
@@ -141,7 +147,7 @@ public abstract class ArrayPropertyEditorSupport extends PropertyEditorSupport {
      */
     protected String encode(char[] v) {
         if (v == null) {
-            return "";
+            return null;
         }
         StringBuffer text = new StringBuffer();
         int length = v == null ? 0 : v.length;
@@ -161,7 +167,7 @@ public abstract class ArrayPropertyEditorSupport extends PropertyEditorSupport {
      */
     protected String encode(long[] v) {
         if (v == null) {
-            return "";
+            return null;
         }
         StringBuffer text = new StringBuffer();
         int length = v == null ? 0 : v.length;
@@ -181,7 +187,7 @@ public abstract class ArrayPropertyEditorSupport extends PropertyEditorSupport {
      */
     protected String encode(float[] v) {
         if (v == null) {
-            return "";
+            return null;
         }
         StringBuffer text = new StringBuffer();
         int length = v == null ? 0 : v.length;
@@ -201,7 +207,7 @@ public abstract class ArrayPropertyEditorSupport extends PropertyEditorSupport {
      */
     protected String encode(double[] v) {
         if (v == null) {
-            return "";
+            return null;
         }
         StringBuffer text = new StringBuffer();
         int length = v == null ? 0 : v.length;
@@ -221,7 +227,7 @@ public abstract class ArrayPropertyEditorSupport extends PropertyEditorSupport {
      */
     protected String encode(Object[] v) {
         if (v == null) {
-            return "";
+            return null;
         }
         StringBuffer text = new StringBuffer();
         int length = v == null ? 0 : v.length;

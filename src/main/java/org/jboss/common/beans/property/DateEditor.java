@@ -21,7 +21,6 @@
  */
 package org.jboss.common.beans.property;
 
-import java.beans.PropertyEditorSupport;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.text.DateFormat;
@@ -41,7 +40,13 @@ import java.util.Locale;
  * @author <a href="mailto:dimitris@jboss.org">Dimitris Andreadis</a>
  */
 @SuppressWarnings("unchecked")
-public class DateEditor extends PropertyEditorSupport {
+public class DateEditor extends PropertyEditorSupport<Date> {
+
+    public DateEditor() {
+        super(Date.class);
+        // TODO Auto-generated constructor stub
+    }
+
     /** The formats to use when parsing the string date */
     private static DateFormat[] formats;
     static {

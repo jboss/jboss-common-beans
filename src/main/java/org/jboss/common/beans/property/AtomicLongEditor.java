@@ -21,7 +21,6 @@
  */
 package org.jboss.common.beans.property;
 
-import java.beans.PropertyEditorSupport;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -29,7 +28,11 @@ import java.util.concurrent.atomic.AtomicLong;
  *
  * @author <a href="mailto:ales.justin@jboss.com">Ales Justin</a>
  */
-public class AtomicLongEditor extends PropertyEditorSupport {
+public class AtomicLongEditor extends PropertyEditorSupport<AtomicLong> {
+
+    public AtomicLongEditor() {
+        super(AtomicLong.class);
+    }
 
     @Override
     public void setAsText(final String text) {

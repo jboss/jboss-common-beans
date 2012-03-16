@@ -21,14 +21,17 @@
  */
 package org.jboss.common.beans.property;
 
-import java.beans.PropertyEditorSupport;
-
 /**
  * A property editor for {@link java.lang.Integer}.
  *
  * @author Scott.Stark@jboss.org
  */
-public class IntegerEditor extends PropertyEditorSupport {
+public class IntegerEditor extends PropertyEditorSupport<Integer> {
+
+    public IntegerEditor() {
+        super(Integer.class);
+    }
+
     /**
      * Map the argument text into and Integer using Integer.decode.
      */

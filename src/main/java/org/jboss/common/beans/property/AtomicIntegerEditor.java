@@ -21,15 +21,19 @@
  */
 package org.jboss.common.beans.property;
 
-import java.beans.PropertyEditorSupport;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * AtomicInteger property editor.
  *
  * @author <a href="mailto:ales.justin@jboss.com">Ales Justin</a>
+ * @author baranowb
  */
-public class AtomicIntegerEditor extends PropertyEditorSupport {
+public class AtomicIntegerEditor extends PropertyEditorSupport<AtomicInteger> {
+
+    public AtomicIntegerEditor() {
+        super(AtomicInteger.class);
+    }
 
     @Override
     public void setAsText(final String text) {

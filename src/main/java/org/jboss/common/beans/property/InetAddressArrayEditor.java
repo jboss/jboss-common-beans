@@ -22,40 +22,42 @@
 package org.jboss.common.beans.property;
 
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 /**
  * A property editor for {@link java.net.InetAddress}[].
  *
  * @author baranowb
  */
-public class InetAddressArrayEditor extends ArrayPropertyEditorSupport {
+public class InetAddressArrayEditor extends ArrayPropertyEditorSupport<InetAddress[]> {
+
+    // use CDI?
+    private PropertyEditorSupport<InetAddress> editor;
+
+    public InetAddressArrayEditor() {
+        super(InetAddress[].class);
+        // this.editor = PropertyEditors.findEditor(InetAddress.class);
+        this.editor = new InetAddressEditor();
+    }
+
     /**
      * Build a InetAddress[] from comma or eol seperated elements
      *
      */
     @Override
     public void setAsText(final String text) throws IllegalArgumentException {
-        try {
-            if (PropertyEditors.isNull(text)) {
-                super.setValue(null);
-                return;
-            }
-            final String[] tokens = super.tokenize(text);
-            final InetAddress[] values = new InetAddress[tokens.length];
-            for (int index = 0; index < tokens.length; index++) {
-                String value = tokens[index];
-                if (text.startsWith("/")) {
-                    // seems like localhost sometimes will look like:
-                    // /127.0.0.1 and the getByNames barfs on the slash - JGH
-                    value = text.substring(1);
-                }
-                values[index] = InetAddress.getByName(PropertiesValueResolver.replaceProperties(value));
-            }
-            super.setValue(values);
-        } catch (UnknownHostException e) {
-            throw new IllegalArgumentException("Failed to parse to InetAddress!", e);
+        if (PropertyEditors.isNull(text)) {
+            super.setValue(null);
+            return;
         }
+        final String[] tokens = super.tokenize(text);
+        final InetAddress[] values = new InetAddress[tokens.length];
+        for (int index = 0; index < tokens.length; index++) {
+            String value = tokens[index];
+            editor.setAsText(value);
+            values[index] = editor.getValue();
+        }
+        super.setValue(values);
+
     }
 
     /**
@@ -65,23 +67,13 @@ public class InetAddressArrayEditor extends ArrayPropertyEditorSupport {
     public String getAsText() {
         InetAddress[] values = (InetAddress[]) getValue();
         if (values == null) {
-            return "";
+            return null;
         }
 
-        /*
-         * Bad impl... it will produce something like: 'hostname/IP' - if hostname is not there '/IP'. But STILL!!! if hostname
-         * is not set, the InetAddress.getHostName() ... will return something. To make it even funnier... InetAddress has no
-         * method to parse what toString() returns.
-         */
         String[] normalizedValues = new String[values.length];
         for (int index = 0; index < normalizedValues.length; index++) {
-            String value = values[index].toString();
-            String[] tokens = value.split("/");
-            if (tokens[0].length() > 0) {
-                normalizedValues[index] = tokens[0];
-            } else {
-                normalizedValues[index] = tokens[1];
-            }
+            this.editor.setValue(values[index]);
+            normalizedValues[index] = this.editor.getAsText();
         }
         return super.encode(normalizedValues);
 

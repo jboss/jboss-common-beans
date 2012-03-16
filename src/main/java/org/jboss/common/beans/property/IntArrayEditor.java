@@ -25,7 +25,13 @@ package org.jboss.common.beans.property;
  * A property editor for int[].
  *
  */
-public class IntArrayEditor extends ArrayPropertyEditorSupport {
+public class IntArrayEditor extends ArrayPropertyEditorSupport<int[]> {
+
+    public IntArrayEditor() {
+        super(int[].class);
+
+    }
+
     /**
      * Build a int[] from comma or eol seperated elements
      *

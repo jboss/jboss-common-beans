@@ -21,7 +21,6 @@
  */
 package org.jboss.common.beans.property;
 
-import java.beans.PropertyEditorSupport;
 import java.math.BigDecimal;
 
 /**
@@ -29,7 +28,11 @@ import java.math.BigDecimal;
  *
  * @author baranowb
  */
-public class BigDecimalEditor extends PropertyEditorSupport {
+public class BigDecimalEditor extends PropertyEditorSupport<BigDecimal> {
+
+    public BigDecimalEditor() {
+        super(BigDecimal.class);
+    }
 
     @Override
     public void setAsText(final String text) {

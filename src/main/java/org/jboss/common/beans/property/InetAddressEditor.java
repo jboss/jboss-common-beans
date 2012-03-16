@@ -31,6 +31,11 @@ import java.net.UnknownHostException;
  * @author <a href="mailto:cdewolf@redhat.com">Carlo de Wolf</a>
  */
 public class InetAddressEditor extends PropertyEditorSupport<InetAddress> {
+
+    public InetAddressEditor() {
+        super(InetAddress.class);
+    }
+
     @Override
     public void setAsText(final String text) throws IllegalArgumentException {
         try {
@@ -54,7 +59,7 @@ public class InetAddressEditor extends PropertyEditorSupport<InetAddress> {
     public String getAsText() {
         InetAddress inetAddress = getValue();
         if (inetAddress == null) {
-            return "";
+            return null;
         }
 
         /*
@@ -69,10 +74,5 @@ public class InetAddressEditor extends PropertyEditorSupport<InetAddress> {
         } else {
             return tokens[1];
         }
-    }
-
-    @Override
-    public void setValue(final Object value) {
-        super.setValue(InetAddress.class, value);
     }
 }
