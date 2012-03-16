@@ -21,14 +21,17 @@
  */
 package org.jboss.common.beans.property;
 
-import java.beans.PropertyEditorSupport;
 
 /**
  * A property editor for {@link java.lang.Class}.
  *
  * @author baranowb
  */
-public class ClassEditor extends PropertyEditorSupport {
+public class ClassEditor extends PropertyEditorSupport<Class>{
+
+    public ClassEditor() {
+        super(Class.class);
+    }
 
     @Override
     public void setAsText(final String text) {
@@ -52,7 +55,7 @@ public class ClassEditor extends PropertyEditorSupport {
     public String getAsText() {
         Class c = (Class) getValue();
         if (c == null) {
-            return "";
+            return null;
         }
 
         return c.getName();

@@ -21,7 +21,6 @@
  */
 package org.jboss.common.beans.property;
 
-import java.beans.PropertyEditorSupport;
 import java.math.BigInteger;
 
 /**
@@ -29,7 +28,11 @@ import java.math.BigInteger;
  *
  * @author baranowb
  */
-public class BigIntegerEditor extends PropertyEditorSupport {
+public class BigIntegerEditor extends PropertyEditorSupport<BigInteger> {
+
+    public BigIntegerEditor() {
+        super(BigInteger.class);
+    }
 
     @Override
     public void setAsText(final String text) {

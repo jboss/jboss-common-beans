@@ -25,6 +25,12 @@ package org.jboss.common.beans.property;
  * @author <a href="mailto:cdewolf@redhat.com">Carlo de Wolf</a>
  */
 public class PropertyChangeEvent<T> extends java.beans.PropertyChangeEvent {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = -514527097496679097L;
+
     /**
      * Constructs a new <code>PropertyChangeEvent</code>.
      *

@@ -30,7 +30,11 @@ import java.util.ArrayList;
  * @author <a href="mailto:jason@planet57.com">Jason Dillon</a>
  * @author Scott.Stark@jboss.org
  */
-public class StringArrayEditor extends ArrayPropertyEditorSupport {
+public class StringArrayEditor extends ArrayPropertyEditorSupport<String[]> {
+
+    public StringArrayEditor() {
+        super(String[].class);
+    }
 
     /**
      * Build a String[] from comma or eol seperated elements
@@ -89,7 +93,7 @@ public class StringArrayEditor extends ArrayPropertyEditorSupport {
 
     protected String encode(String[] v) {
         if (v == null) {
-            return "";
+            return null;
         }
         StringBuffer text = new StringBuffer();
 

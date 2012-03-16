@@ -26,7 +26,12 @@ package org.jboss.common.beans.property;
  *
  * @author baranowb
  */
-public class DoubleArrayEditor extends ArrayPropertyEditorSupport {
+public class DoubleArrayEditor extends ArrayPropertyEditorSupport<double[]> {
+
+    public DoubleArrayEditor() {
+        super(double[].class);
+    }
+
     /**
      * Build a double[] from comma or eol seperated elements
      *

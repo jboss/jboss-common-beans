@@ -21,13 +21,10 @@
  */
 package org.jboss.common.beans.property;
 
-import java.beans.PropertyEditorSupport;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLDecoder;
 
@@ -36,8 +33,11 @@ import java.net.URLDecoder;
  *
  * @baranowb
  */
-public class URLEditor extends PropertyEditorSupport {
+public class URLEditor extends PropertyEditorSupport<URL> {
 
+    public URLEditor() {
+        super(URL.class);
+    }
     public void setAsText(String text) {
         if (PropertyEditors.isNull(text)) {
             setValue(null);
@@ -54,7 +54,7 @@ public class URLEditor extends PropertyEditorSupport {
     public String getAsText() {
         URL u = (URL) getValue();
         if (u == null) {
-            return "";
+            return null;
         }
         String stringValue = u.toString();
         if (stringValue.startsWith("file")) {

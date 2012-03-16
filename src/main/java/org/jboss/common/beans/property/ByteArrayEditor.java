@@ -26,7 +26,12 @@ package org.jboss.common.beans.property;
  *
  * @author baranowb
  */
-public class ByteArrayEditor extends ArrayPropertyEditorSupport {
+public class ByteArrayEditor extends ArrayPropertyEditorSupport<byte[]> {
+
+    public ByteArrayEditor() {
+        super(byte[].class);
+    }
+
     /**
      * Build a byte[] from comma or eol seperated elements
      *

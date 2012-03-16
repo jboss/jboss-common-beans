@@ -26,6 +26,7 @@ import java.security.PrivilegedAction;
 
 /**
  * @author <a href="mailto:cdewolf@redhat.com">Carlo de Wolf</a>
+ * @author baranowb
  */
 class PrivilegedActions {
     static class GetPropertyAction implements PrivilegedAction<String> {
@@ -43,8 +44,31 @@ class PrivilegedActions {
         }
     }
 
+    static class GetEnvAction implements PrivilegedAction<String> {
+        private final String key;
+        private final String def;
+
+        GetEnvAction(final String key, final String def) {
+            this.key = key;
+            this.def = def;
+        }
+
+        @Override
+        public String run() {
+            String envValue = System.getenv(key);
+            return envValue == null ? def : envValue;
+        }
+    }
+
     static String getProperty(final String key, final String def) {
         final PrivilegedAction<String> action = new GetPropertyAction(key, def);
+        if (System.getSecurityManager() == null)
+            return action.run();
+        return AccessController.doPrivileged(action);
+    }
+
+    static String getEnv(final String key, final String def) {
+        final PrivilegedAction<String> action = new GetEnvAction(key, def);
         if (System.getSecurityManager() == null)
             return action.run();
         return AccessController.doPrivileged(action);

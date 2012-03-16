@@ -21,14 +21,17 @@
  */
 package org.jboss.common.beans.property;
 
-import java.beans.PropertyEditorSupport;
-
 /**
  * A property editor for {@link java.lang.Boolean}.
  *
  * @author Scott.Stark@jboss.org
  */
-public class BooleanEditor extends PropertyEditorSupport {
+public class BooleanEditor extends PropertyEditorSupport<Boolean> {
+
+    public BooleanEditor() {
+        super(Boolean.class);
+    }
+
     private static final String[] BOOLEAN_TAGS = { "true", "false" };
 
     /**

@@ -21,7 +21,6 @@
  */
 package org.jboss.common.beans.property;
 
-import java.beans.PropertyEditorSupport;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
@@ -33,7 +32,11 @@ import java.net.URLDecoder;
  *
  * @author baranowb
  */
-public class URIEditor extends PropertyEditorSupport {
+public class URIEditor extends PropertyEditorSupport<URI> {
+
+    public URIEditor() {
+        super(URI.class);
+    }
 
     public void setAsText(String text) {
         if (PropertyEditors.isNull(text)) {
@@ -54,7 +57,7 @@ public class URIEditor extends PropertyEditorSupport {
     public String getAsText() {
         URI u = (URI) getValue();
         if (u == null) {
-            return "";
+            return null;
         }
         String stringValue = u.toString();
         if (stringValue.startsWith("file")) {

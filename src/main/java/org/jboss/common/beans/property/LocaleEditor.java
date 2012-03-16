@@ -21,7 +21,6 @@
  */
 package org.jboss.common.beans.property;
 
-import java.beans.PropertyEditorSupport;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
@@ -30,7 +29,11 @@ import java.util.StringTokenizer;
  *
  * @author <a href="mailto:ales.justin@jboss.com">Ales Justin</a>
  */
-public class LocaleEditor extends PropertyEditorSupport {
+public class LocaleEditor extends PropertyEditorSupport<Locale> {
+
+    public LocaleEditor() {
+        super(Locale.class);
+    }
 
     @Override
     public void setAsText(String text) {
@@ -43,12 +46,6 @@ public class LocaleEditor extends PropertyEditorSupport {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Failed to parse locale.", e);
         }
-    }
-
-    @Override
-    public String getAsText() {
-        Object value = getValue();
-        return (value != null ? value.toString() : "");
     }
 
     private static Locale parseLocaleString(String localeString) {

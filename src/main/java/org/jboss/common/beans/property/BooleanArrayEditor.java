@@ -27,7 +27,12 @@ package org.jboss.common.beans.property;
  *
  * @author baranowb
  */
-public class BooleanArrayEditor extends ArrayPropertyEditorSupport {
+public class BooleanArrayEditor extends ArrayPropertyEditorSupport<boolean[]> {
+
+    public BooleanArrayEditor() {
+        super(boolean[].class);
+    }
+
     private static final String[] BOOLEAN_TAGS = { "true", "false" };
 
     /**

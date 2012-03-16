@@ -21,8 +21,6 @@
  */
 package org.jboss.common.beans.property;
 
-import java.beans.PropertyEditorSupport;
-
 /**
  * A property editor for {@link java.lang.String}.
  *
@@ -32,7 +30,12 @@ import java.beans.PropertyEditorSupport;
  *
  * @author <a href="dimitris@jboss.org">Dimitris Andreadis</a>
  */
-public class StringEditor extends PropertyEditorSupport {
+public class StringEditor extends PropertyEditorSupport<String> {
+
+    public StringEditor() {
+        super(String.class);
+    }
+
     /**
      * Keep the provided String as is.
      */

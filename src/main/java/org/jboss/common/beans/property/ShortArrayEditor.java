@@ -25,8 +25,11 @@ package org.jboss.common.beans.property;
  * A property editor for short[].
  *
  */
-public class ShortArrayEditor extends ArrayPropertyEditorSupport {
+public class ShortArrayEditor extends ArrayPropertyEditorSupport<short[]> {
 
+    public ShortArrayEditor() {
+        super(short[].class);
+    }
     /**
      * Build a short[] from comma or eol seperated elements
      *

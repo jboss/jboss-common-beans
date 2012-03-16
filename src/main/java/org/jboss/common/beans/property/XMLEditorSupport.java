@@ -29,33 +29,51 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 /**
- * A property editor for {@link org.w3c.dom.Element}.
+ * A property editor for {@link org.w3c.dom.Document}.
  *
  * @author <a href="mailto:eross@noderunner.net">Elias Ross</a>
+ * @author baranowb
  */
-public class ElementEditor extends XMLEditorSupport<Element> {
+public abstract class XMLEditorSupport<T> extends PropertyEditorSupport<T> {
 
-    public ElementEditor() {
-        super(Element.class);
+    /**
+     * @param type
+     */
+    public XMLEditorSupport(Class<T> type) {
+        super(type);
+        // TODO Auto-generated constructor stub
     }
 
     /**
-     * Sets as an Document created from a String.
-     *
-     * @throws IllegalArgumentException A parse exception occured
+     * Returns the property as a String.
      */
     @Override
-    public void setAsText(String text) {
-        if (PropertyEditors.isNull(text)) {
-            setValue(null);
-            return;
+    public String getAsText() {
+        if (getValue() == null) {
+            return null;
         }
-        setValue(getAsDocument(text).getDocumentElement());
+        return DOMWriter.printNode((Node) getValue(), false);
+    }
+
+    protected Document getAsDocument(String text) {
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            StringReader sr = new StringReader(text);
+            InputSource is = new InputSource(sr);
+            Document d = db.parse(is);
+            return d;
+        } catch (ParserConfigurationException e) {
+            throw new IllegalArgumentException("Failed to parse to Document!", e);
+        } catch (SAXException e) {
+            throw new IllegalArgumentException("Failed to parse to Document!", e);
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Failed to parse to Document!", e);
+        }
     }
 }
