@@ -30,13 +30,8 @@ import java.net.InetAddress;
  */
 public class InetAddressArrayEditor extends ArrayPropertyEditorSupport<InetAddress[]> {
 
-    // use CDI?
-    private PropertyEditorSupport<InetAddress> editor;
-
     public InetAddressArrayEditor() {
         super(InetAddress[].class);
-        // this.editor = PropertyEditors.findEditor(InetAddress.class);
-        this.editor = new InetAddressEditor();
     }
 
     /**
@@ -49,6 +44,8 @@ public class InetAddressArrayEditor extends ArrayPropertyEditorSupport<InetAddre
             super.setValue(null);
             return;
         }
+
+        final InetAddressEditor editor = new InetAddressEditor();
         final String[] tokens = super.tokenize(text);
         final InetAddress[] values = new InetAddress[tokens.length];
         for (int index = 0; index < tokens.length; index++) {
@@ -70,10 +67,11 @@ public class InetAddressArrayEditor extends ArrayPropertyEditorSupport<InetAddre
             return null;
         }
 
-        String[] normalizedValues = new String[values.length];
+        final InetAddressEditor editor = new InetAddressEditor();
+        final String[] normalizedValues = new String[values.length];
         for (int index = 0; index < normalizedValues.length; index++) {
-            this.editor.setValue(values[index]);
-            normalizedValues[index] = this.editor.getAsText();
+            editor.setValue(values[index]);
+            normalizedValues[index] = editor.getAsText();
         }
         return super.encode(normalizedValues);
 
