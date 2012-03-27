@@ -24,91 +24,13 @@ package org.jboss.common.beans.property;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
-import java.security.AllPermission;
-import java.security.CodeSource;
-import java.security.Permission;
-import java.security.PermissionCollection;
-import java.security.Policy;
-import java.security.ProtectionDomain;
-import java.util.Enumeration;
-
 import org.junit.Test;
 
 /**
  * @author <a href="mailto:cdewolf@redhat.com">Carlo de Wolf</a>
  */
 public class SystemPropertyITCase {
-    
-//    public static Policy ALLOW;
-//    static
-//    {
-//        class Allow extends Policy
-//        {
-//            public Allow()
-//            {
-//                
-//                
-//            }
-//
-//            /* (non-Javadoc)
-//             * @see java.security.Policy#getPermissions(java.security.CodeSource)
-//             */
-//            @Override
-//            public PermissionCollection getPermissions(final CodeSource codesource) {
-//                Permission allPerm = new AllPermission();
-//                PermissionCollection pc = new PermissionCollection() {
-//                    
-//                    @Override
-//                    public boolean implies(Permission permission) {
-//                        System.err.println(">"+permission+" --> "+codesource);
-//                        if(permission.toString().contains("user.dir"))
-//                            return false;
-//                        return true;
-//                    }
-//                    
-//                    @Override
-//                    public Enumeration<Permission> elements() {
-//                        // TODO Auto-generated method stub
-//                        return null;
-//                    }
-//                    
-//                    @Override
-//                    public void add(Permission permission) {
-//                        // TODO Auto-generated method stub
-//                        
-//                    }
-//                };
-//                pc.add(allPerm);
-//                return pc;
-//            }
-//
-//            /* (non-Javadoc)
-//             * @see java.security.Policy#getPermissions(java.security.ProtectionDomain)
-//             */
-//            @Override
-//            public PermissionCollection getPermissions(ProtectionDomain domain) {
-//                return this.getPermissions(domain.getCodeSource());
-//            }
-//
-//            /* (non-Javadoc)
-//             * @see java.security.Policy#implies(java.security.ProtectionDomain, java.security.Permission)
-//             */
-//            @Override
-//            public boolean implies(ProtectionDomain domain, Permission permission) {
-//                System.err.println("->"+permission+" --> "+domain.getCodeSource());
-//                if(permission.toString().contains("user.dir"))
-//                    return false;
-//                return true;
-//            }
-//            
-//            
-//        }
-//        ALLOW = new Allow();
-//        //Policy.setPolicy(ALLOW);
-//        System.setSecurityManager(new SecurityManager());
-//    }
-//    
-//    
+
     @Test
     public void testUserDir() {
         try {
