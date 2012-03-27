@@ -127,9 +127,9 @@ public class PropertiesValueResolver {
                                 continue;
                             }
                             // First check for system property, then env variable
-                            String val = PrivilegedActions.getProperty(name,null);
+                            String val = System.getProperty(name);
                             if (val == null && name.startsWith("env."))
-                                val = PrivilegedActions.getEnv(name.substring(4),null);
+                                val = System.getenv(name.substring(4));
 
                             if (val != null) {
                                 builder.append(val);
