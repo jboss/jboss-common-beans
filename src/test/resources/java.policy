@@ -1,0 +1,12 @@
+// for Maven
+grant codeBase "file:${maven.repo.local}/-" {
+    permission java.security.AllPermission;
+};
+
+grant codeBase "file:target/classes/-" {
+    permission java.security.AllPermission;
+};
+
+grant codeBase "file:target/test-classes/-" {
+    permission java.util.PropertyPermission "user.name", "read";
+};
