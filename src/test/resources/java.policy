@@ -1,3 +1,8 @@
+// for Intellij
+grant codeBase "file:${idea.launcher.bin.path}/../-" {
+    permission java.security.AllPermission;
+};
+
 // for Maven
 grant codeBase "file:${maven.repo.local}/-" {
     permission java.security.AllPermission;
@@ -9,4 +14,5 @@ grant codeBase "file:target/classes/-" {
 
 grant codeBase "file:target/test-classes/-" {
     permission java.util.PropertyPermission "user.name", "read";
+    permission "java.lang.RuntimePermission" "getProtectionDomain";
 };
