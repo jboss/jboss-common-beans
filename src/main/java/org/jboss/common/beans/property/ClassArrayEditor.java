@@ -26,46 +26,10 @@ package org.jboss.common.beans.property;
  *
  * @author baranowb
  */
-public class ClassArrayEditor extends ArrayPropertyEditorSupport<Class[]> {
+public class ClassArrayEditor extends GenericArrayPropertyEditor<Class[]> {
 
     public ClassArrayEditor() {
         super(Class[].class);
     }
 
-    /**
-     * Build a Class[] from comma or eol seperated elements
-     *
-     */
-    @Override
-    public void setAsText(final String text) {
-        if (PropertyEditors.isNull(text)) {
-            setValue(null);
-            return;
-        }
-        String[] tokens = super.tokenize(text);
-        Class[] theValue = new Class[tokens.length];
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        for (int index = 0; index < tokens.length; index++) {
-            try {
-                Class<?> c = loader.loadClass(tokens[index]);
-                theValue[index] = c;
-            } catch (ClassNotFoundException e) {
-                throw new IllegalArgumentException("Failed to find class: " + tokens[index], e);
-            }
-        }
-        setValue(theValue);
-    }
-
-    /**
-     * @return a comma seperated string of the array elements
-     */
-    @Override
-    public String getAsText() {
-        Class[] theValue = (Class[]) getValue();
-        String[] stringValues = new String[theValue.length];
-        for (int index = 0; index < theValue.length; index++) {
-            stringValues[index] = theValue[index].getName();
-        }
-        return super.encode(stringValues);
-    }
 }
