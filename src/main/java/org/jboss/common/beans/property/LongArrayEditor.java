@@ -25,41 +25,9 @@ package org.jboss.common.beans.property;
  * A property editor for long[].
  *
  */
-public class LongArrayEditor extends ArrayPropertyEditorSupport<long[]> {
+public class LongArrayEditor extends GenericArrayPropertyEditor<long[]> {
 
     public LongArrayEditor() {
         super(long[].class);
-    }
-
-    /**
-     * Build a long[] from comma or eol seperated elements
-     *
-     */
-    @Override
-    public void setAsText(final String text) {
-        if (PropertyEditors.isNull(text)) {
-            setValue(null);
-            return;
-        }
-        String[] tokens = super.tokenize(text);
-        long[] theValue = new long[tokens.length];
-
-        for (int index = 0; index < tokens.length; index++) {
-            try {
-                theValue[index] = Long.decode(tokens[index]);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("Failed to parse long.", e);
-            }
-        }
-        setValue(theValue);
-    }
-
-    /**
-     * @return a comma seperated string of the array elements
-     */
-    @Override
-    public String getAsText() {
-        long[] theValue = (long[]) getValue();
-        return super.encode(theValue);
     }
 }

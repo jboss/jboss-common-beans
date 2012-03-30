@@ -28,52 +28,9 @@ import java.net.InetAddress;
  *
  * @author baranowb
  */
-public class InetAddressArrayEditor extends ArrayPropertyEditorSupport<InetAddress[]> {
+public class InetAddressArrayEditor extends GenericArrayPropertyEditor<InetAddress[]> {
 
     public InetAddressArrayEditor() {
         super(InetAddress[].class);
-    }
-
-    /**
-     * Build a InetAddress[] from comma or eol seperated elements
-     *
-     */
-    @Override
-    public void setAsText(final String text) throws IllegalArgumentException {
-        if (PropertyEditors.isNull(text)) {
-            super.setValue(null);
-            return;
-        }
-
-        final InetAddressEditor editor = new InetAddressEditor();
-        final String[] tokens = super.tokenize(text);
-        final InetAddress[] values = new InetAddress[tokens.length];
-        for (int index = 0; index < tokens.length; index++) {
-            String value = tokens[index];
-            editor.setAsText(value);
-            values[index] = editor.getValue();
-        }
-        super.setValue(values);
-
-    }
-
-    /**
-     * @return a comma seperated string of the array elements
-     */
-    @Override
-    public String getAsText() {
-        InetAddress[] values = (InetAddress[]) getValue();
-        if (values == null) {
-            return null;
-        }
-
-        final InetAddressEditor editor = new InetAddressEditor();
-        final String[] normalizedValues = new String[values.length];
-        for (int index = 0; index < normalizedValues.length; index++) {
-            editor.setValue(values[index]);
-            normalizedValues[index] = editor.getAsText();
-        }
-        return super.encode(normalizedValues);
-
     }
 }
