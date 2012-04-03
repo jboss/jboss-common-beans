@@ -27,41 +27,13 @@ package org.jboss.common.beans.property;
  *
  * @author baranowb
  */
-public class BooleanArrayEditor extends ArrayPropertyEditorSupport<boolean[]> {
+public class BooleanArrayEditor extends GenericArrayPropertyEditor<boolean[]> {
 
     public BooleanArrayEditor() {
         super(boolean[].class);
     }
 
     private static final String[] BOOLEAN_TAGS = { "true", "false" };
-
-    /**
-     * Build a boolean[] from comma or eol seperated elements
-     *
-     */
-    @Override
-    public void setAsText(final String text) {
-        if (PropertyEditors.isNull(text)) {
-            setValue(null);
-            return;
-        }
-        String[] tokens = super.tokenize(text);
-        boolean[] theValue = new boolean[tokens.length];
-
-        for (int index = 0; index < tokens.length; index++) {
-            theValue[index] = Boolean.parseBoolean(tokens[index]);
-        }
-        setValue(theValue);
-    }
-
-    /**
-     * @return a comma seperated string of the array elements
-     */
-    @Override
-    public String getAsText() {
-        boolean[] theValue = (boolean[]) getValue();
-        return super.encode(theValue);
-    }
 
     @Override
     public String[] getTags() {

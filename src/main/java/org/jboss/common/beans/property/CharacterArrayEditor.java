@@ -28,7 +28,7 @@ package org.jboss.common.beans.property;
  * @todo REVIEW: look at possibly parsing escape sequences?
  * @author baranowb
  */
-public class CharacterArrayEditor extends ArrayPropertyEditorSupport<char[]> {
+public class CharacterArrayEditor extends GenericArrayPropertyEditor<char[]> {
 
     public CharacterArrayEditor() {
         super(char[].class);
@@ -54,14 +54,5 @@ public class CharacterArrayEditor extends ArrayPropertyEditorSupport<char[]> {
             theValue[index] = tokens[index].charAt(0);
         }
         setValue(theValue);
-    }
-
-    /**
-     * @return a comma seperated string of the array elements
-     */
-    @Override
-    public String getAsText() {
-        char[] theValue = (char[]) getValue();
-        return super.encode(theValue);
     }
 }

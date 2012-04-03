@@ -30,32 +30,10 @@ import java.util.ArrayList;
  * @author <a href="mailto:jason@planet57.com">Jason Dillon</a>
  * @author Scott.Stark@jboss.org
  */
-public class StringArrayEditor extends ArrayPropertyEditorSupport<String[]> {
+public class StringArrayEditor extends GenericArrayPropertyEditor<String[]> {
 
     public StringArrayEditor() {
         super(String[].class);
-    }
-
-    /**
-     * Build a String[] from comma or eol seperated elements
-     *
-     */
-    @Override
-    public void setAsText(String text) throws IllegalArgumentException {
-        if (PropertyEditors.isNull(text)) {
-            setValue(null);
-            return;
-        }
-        String[] tokens = tokenize(text);
-        super.setValue(tokens);
-    }
-
-    /**
-     * @return a comma seperated string of the array elements
-     */
-    public String getAsText() {
-        String[] theValue = (String[]) getValue();
-        return encode(theValue);
     }
 
     protected String[] tokenize(String text) {

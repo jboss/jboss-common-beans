@@ -127,7 +127,15 @@ public class PropertyEditors {
      * @return An editor for the given type or null if none was found.
      */
     public static PropertyEditor findEditor(final Class<?> type) {
-        return PropertyEditorManager.findEditor(type);
+        PropertyEditor pe = PropertyEditorManager.findEditor(type);
+        if(pe == null && type.isArray()){
+            //check for generic
+            Class<?> cellType = type.getComponentType();
+            if(PropertyEditorManager.findEditor(cellType) != null){
+                pe = new GenericArrayPropertyEditor(type);
+            }
+        }
+        return pe;
     }
 
     /**
@@ -145,8 +153,7 @@ public class PropertyEditors {
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
             type = loader.loadClass(typeName);
         }
-
-        return PropertyEditorManager.findEditor(type);
+        return findEditor(type);
     }
 
     /**

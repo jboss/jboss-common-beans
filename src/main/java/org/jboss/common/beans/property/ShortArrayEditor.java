@@ -25,38 +25,9 @@ package org.jboss.common.beans.property;
  * A property editor for short[].
  *
  */
-public class ShortArrayEditor extends ArrayPropertyEditorSupport<short[]> {
+public class ShortArrayEditor extends GenericArrayPropertyEditor<short[]> {
 
     public ShortArrayEditor() {
         super(short[].class);
-    }
-    /**
-     * Build a short[] from comma or eol seperated elements
-     *
-     */
-    @Override
-    public String getAsText() {
-        short[] value = (short[]) super.getValue();
-        return super.encode(value);
-    }
-    /**
-     * @return a comma seperated string of the array elements
-     */
-    @Override
-    public void setAsText(String text) throws IllegalArgumentException {
-        if (PropertyEditors.isNull(text)) {
-            setValue(null);
-            return;
-        }
-        String[] tokens = super.tokenize(text);
-        short[] value = new short[tokens.length];
-        for (int index = 0; index < tokens.length; index++) {
-            try {
-                value[index] = Short.decode(tokens[index]).shortValue();
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("Failed to parse short.", e);
-            }
-        }
-        super.setValue(value);
     }
 }

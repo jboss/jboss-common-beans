@@ -26,41 +26,9 @@ package org.jboss.common.beans.property;
  *
  * @author baranowb
  */
-public class FloatArrayEditor extends ArrayPropertyEditorSupport<float[]> {
+public class FloatArrayEditor extends GenericArrayPropertyEditor<float[]> {
 
     public FloatArrayEditor() {
         super(float[].class);
-    }
-
-    /**
-     * Build a float[] from comma or eol seperated elements
-     *
-     */
-    @Override
-    public void setAsText(final String text) {
-        if (PropertyEditors.isNull(text)) {
-            setValue(null);
-            return;
-        }
-        String[] tokens = super.tokenize(text);
-        float[] theValue = new float[tokens.length];
-
-        for (int index = 0; index < tokens.length; index++) {
-            try {
-                theValue[index] = Float.parseFloat(tokens[index]);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("Failed to parse float.", e);
-            }
-        }
-        setValue(theValue);
-    }
-
-    /**
-     * @return a comma seperated string of the array elements
-     */
-    @Override
-    public String getAsText() {
-        float[] theValue = (float[]) getValue();
-        return super.encode(theValue);
     }
 }

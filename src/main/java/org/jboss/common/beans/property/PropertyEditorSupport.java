@@ -30,7 +30,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public abstract class PropertyEditorSupport<T> extends java.beans.PropertyEditorSupport implements PropertyEditor<T> {
     private T value;
-    private Class<T> type;
+    private final Class<T> type;
 
     // override listeners, its private in JDK class....
     //TODO: should this manage ONLY org.jboss listeners?
@@ -46,11 +46,12 @@ public abstract class PropertyEditorSupport<T> extends java.beans.PropertyEditor
     }
 
     /**
-     * @param source
+     * Creates PropertyEditorSupport instance. Requires T class to enforce runtime type checks and a source.
      */
-    public PropertyEditorSupport(Object source) {
-        super(source);
-        // TODO Auto-generated constructor stub
+    public PropertyEditorSupport(Class<T> type, Object source) {
+        super();
+        super.setSource(source);
+        this.type = type;
     }
 
     public void addPropertyChangeListener(final PropertyChangeListener<T> listener) {
@@ -129,6 +130,9 @@ public abstract class PropertyEditorSupport<T> extends java.beans.PropertyEditor
         // super.firePropertyChange();
     }
 
+    protected Class<T> getType(){
+        return this.type;
+    }
     @Override
     public abstract void setAsText(final String text) throws IllegalArgumentException;
 
