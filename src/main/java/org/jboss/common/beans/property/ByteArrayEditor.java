@@ -26,41 +26,9 @@ package org.jboss.common.beans.property;
  *
  * @author baranowb
  */
-public class ByteArrayEditor extends ArrayPropertyEditorSupport<byte[]> {
+public class ByteArrayEditor extends GenericArrayPropertyEditor<byte[]> {
 
     public ByteArrayEditor() {
         super(byte[].class);
-    }
-
-    /**
-     * Build a byte[] from comma or eol seperated elements
-     *
-     */
-    @Override
-    public void setAsText(final String text) {
-        if (PropertyEditors.isNull(text)) {
-            setValue(null);
-            return;
-        }
-        String[] tokens = super.tokenize(text);
-        byte[] theValue = new byte[tokens.length];
-
-        for (int index = 0; index < tokens.length; index++) {
-            try {
-                theValue[index] = Byte.decode(tokens[index]);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("Failed to parse byte.", e);
-            }
-        }
-        setValue(theValue);
-    }
-
-    /**
-     * @return a comma seperated string of the array elements
-     */
-    @Override
-    public String getAsText() {
-        byte[] theValue = (byte[]) getValue();
-        return super.encode(theValue);
     }
 }

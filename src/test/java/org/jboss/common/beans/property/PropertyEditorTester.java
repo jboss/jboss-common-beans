@@ -59,7 +59,7 @@ public abstract class PropertyEditorTester<T> {
 
         // test
         Class<T> type = getType();
-        PropertyEditor editor = PropertyEditorManager.findEditor(type);
+        PropertyEditor editor = PropertyEditors.findEditor(type);
 
         String[] inputData = getInputData();
         Object[] expectedData = getOutputData();

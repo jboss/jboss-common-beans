@@ -26,41 +26,9 @@ package org.jboss.common.beans.property;
  *
  * @author baranowb
  */
-public class DoubleArrayEditor extends ArrayPropertyEditorSupport<double[]> {
+public class DoubleArrayEditor extends GenericArrayPropertyEditor<double[]> {
 
     public DoubleArrayEditor() {
         super(double[].class);
-    }
-
-    /**
-     * Build a double[] from comma or eol seperated elements
-     *
-     */
-    @Override
-    public void setAsText(final String text) {
-        if (PropertyEditors.isNull(text)) {
-            setValue(null);
-            return;
-        }
-        String[] tokens = super.tokenize(text);
-        double[] theValue = new double[tokens.length];
-
-        for (int index = 0; index < tokens.length; index++) {
-            try {
-                theValue[index] = Double.parseDouble(tokens[index]);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("Failed to parse double.", e);
-            }
-        }
-        setValue(theValue);
-    }
-
-    /**
-     * @return a comma seperated string of the array elements
-     */
-    @Override
-    public String getAsText() {
-        double[] theValue = (double[]) getValue();
-        return super.encode(theValue);
     }
 }

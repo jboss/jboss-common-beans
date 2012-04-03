@@ -25,42 +25,10 @@ package org.jboss.common.beans.property;
  * A property editor for int[].
  *
  */
-public class IntArrayEditor extends ArrayPropertyEditorSupport<int[]> {
+public class IntArrayEditor extends GenericArrayPropertyEditor<int[]> {
 
     public IntArrayEditor() {
         super(int[].class);
 
-    }
-
-    /**
-     * Build a int[] from comma or eol seperated elements
-     *
-     */
-    @Override
-    public void setAsText(final String text) {
-        if (PropertyEditors.isNull(text)) {
-            setValue(null);
-            return;
-        }
-        String[] tokens = super.tokenize(text);
-        int[] theValue = new int[tokens.length];
-
-        for (int index = 0; index < tokens.length; index++) {
-            try {
-                theValue[index] = Integer.decode(tokens[index]);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("Failed to parse integer.", e);
-            }
-        }
-        setValue(theValue);
-    }
-
-    /**
-     * @return a comma seperated string of the array elements
-     */
-    @Override
-    public String getAsText() {
-        int[] theValue = (int[]) getValue();
-        return super.encode(theValue);
     }
 }
