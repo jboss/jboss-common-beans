@@ -35,9 +35,9 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:git:git@github.com:jbossas/jboss-common-beans.git</connection>
-        <developerConnection>scm:git:git@github.com:jbossas/jboss-common-beans.git</developerConnection>
-        <url>https://github.com/jbossas/jboss-common-beans</url>
+        <connection>scm:git:git@github.com:jboss/jboss-common-beans.git</connection>
+        <developerConnection>scm:git:git@github.com:jboss/jboss-common-beans.git</developerConnection>
+        <url>https://github.com/jboss/jboss-common-beans</url>
     </scm>
     
     <properties>
