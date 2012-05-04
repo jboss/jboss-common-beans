@@ -29,7 +29,7 @@ import org.junit.Before;
 
 /**
  * @author baranowb
- * 
+ *
  */
 public class PropertiesEditorTestCase extends PropertyEditorTester<Properties> {
 
@@ -42,16 +42,11 @@ public class PropertiesEditorTestCase extends PropertyEditorTester<Properties> {
         testedProperties.setProperty("prop2", "value2");
         testedProperties.setProperty("prop3", "value3");
         testedProperties.setProperty("prop32", "value3");
-        testedProperties.setProperty("prop4", System.getProperty("user.home"));
-        //TODO: should the '\\\\\' be fixed somehow ?
-        testedProperties.setProperty("prop5", "C:\\disk1\\root\\");
-        System.setProperty("some.win32.path", "C:\\\\disk1\\\\root\\\\");
-        System.setProperty("prop3", "value3");
     }
 
     @Override
     public String[] getInputData() {
-        return new String[] { "prop1=value1\nprop2=value2\nprop3=value3\nprop32=${prop3}\nprop4=${user.home}\nprop5=${some.win32.path}" };
+        return new String[] { "prop1=value1\nprop2=value2\nprop3=value3\nprop32=value3\n" };
     }
 
     @Override

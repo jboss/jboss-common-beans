@@ -44,9 +44,8 @@ public class PropertiesEditor extends PropertyEditorSupport<Properties> {
             return;
         }
         try {
-            String replacedText = PropertiesValueResolver.replaceProperties(text);
             Properties props = new Properties();
-            props.load(new ByteArrayInputStream(replacedText.getBytes()));
+            props.load(new ByteArrayInputStream(text.getBytes()));
             setValue(props);
         } catch (IOException e) {
             throw new IllegalArgumentException("Failed to parse properties.", e);

@@ -49,7 +49,7 @@ public class InetAddressEditor extends PropertyEditorSupport<InetAddress> {
                 // /127.0.0.1 and the getByNames barfs on the slash - JGH
                 value = text.substring(1);
             }
-            setValue(InetAddress.getByName(PropertiesValueResolver.replaceProperties(value)));
+            setValue(InetAddress.getByName(value));
         } catch (UnknownHostException e) {
             throw new IllegalArgumentException("Failed to parse: " + text, e);
         }
