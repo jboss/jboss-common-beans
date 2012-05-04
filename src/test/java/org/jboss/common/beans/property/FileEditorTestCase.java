@@ -27,23 +27,23 @@ import java.util.Comparator;
 
 /**
  * @author baranowb
- * 
+ *
  */
 public class FileEditorTestCase extends PropertyEditorTester<File> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "/tmp/test1", "/tmp/subdir/../test2" };
+        return new String[] { "/a/test1", "/a/subdir/../test2" };
     }
 
     @Override
     public Object[] getOutputData() throws Exception {
-        return new Object[] { new File("/tmp/test1").getCanonicalFile(), new File("/tmp/test2").getCanonicalFile() };
+        return new Object[] { new File("/a/test1").getCanonicalFile(), new File("/a/test2").getCanonicalFile() };
     }
 
     @Override
     public String[] getConvertedToText() {
-        return new String[] { "/tmp/test1", "/tmp/test2" };
+        return new String[] { "/a/test1", "/a/test2" };
     }
 
     @Override
