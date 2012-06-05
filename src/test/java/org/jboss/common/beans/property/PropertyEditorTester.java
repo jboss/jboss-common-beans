@@ -32,6 +32,8 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+import org.jboss.common.beans.property.finder.DefaultPropertyEditorFinder;
+import org.jboss.common.beans.property.finder.PropertyEditorFinder;
 import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.Node;
@@ -44,14 +46,15 @@ import org.w3c.dom.NodeList;
 public abstract class PropertyEditorTester<T> {
 
     protected final Logger logger = Logger.getLogger(this.getClass().getName());
-
+    protected PropertyEditorFinder finder;
+    
     @Before
     public void init() {
         // initialize locale, this is done for date editor, it wont pass test unless its run on EN system :).
         Locale testLocale = Locale.US;
         Locale.setDefault(testLocale);
         // init editors
-        PropertyEditors.init();
+        finder = PropertyEditorFinder.getInstance();
     }
 
     @Test
@@ -59,7 +62,7 @@ public abstract class PropertyEditorTester<T> {
 
         // test
         Class<T> type = getType();
-        PropertyEditor editor = PropertyEditors.findEditor(type);
+        PropertyEditor editor = finder.find(type);
 
         String[] inputData = getInputData();
         Object[] expectedData = getOutputData();
