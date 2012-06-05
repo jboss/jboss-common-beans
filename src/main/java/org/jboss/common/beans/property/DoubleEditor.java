@@ -38,7 +38,7 @@ public class DoubleEditor extends PropertyEditorSupport<Double> {
      */
     @Override
     public void setAsText(final String text) {
-        if (PropertyEditors.isNull(text)) {
+        if (BeanUtils.isNull(text)) {
             setValue(null);
             return;
         }

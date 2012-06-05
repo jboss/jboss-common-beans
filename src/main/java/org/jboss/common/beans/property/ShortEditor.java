@@ -36,7 +36,7 @@ public class ShortEditor extends PropertyEditorSupport<Short> {
      * Map the argument text into and Short using Short.decode.
      */
     public void setAsText(final String text) {
-        if (PropertyEditors.isNull(text)) {
+        if (BeanUtils.isNull(text)) {
             setValue(null);
             return;
         }
