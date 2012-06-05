@@ -39,7 +39,7 @@ public class InetAddressEditor extends PropertyEditorSupport<InetAddress> {
     @Override
     public void setAsText(final String text) throws IllegalArgumentException {
         try {
-            if (PropertyEditors.isNull(text)) {
+            if (BeanUtils.isNull(text)) {
                 setValue(null);
                 return;
             }

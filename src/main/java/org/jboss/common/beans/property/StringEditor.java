@@ -40,7 +40,7 @@ public class StringEditor extends PropertyEditorSupport<String> {
      * Keep the provided String as is.
      */
     public void setAsText(String text) {
-        if (PropertyEditors.isNull(text)){
+        if (BeanUtils.isNull(text)){
             setValue(null);
             return;
         }
