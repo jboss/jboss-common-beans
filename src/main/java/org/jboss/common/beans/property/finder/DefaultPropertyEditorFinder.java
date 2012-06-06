@@ -159,11 +159,11 @@ public class DefaultPropertyEditorFinder extends PropertyEditorFinder {
         }
 
         final boolean isArray = type.isArray();
-        String editorName = super.stripPackage(type);
+        String editorName = BeanUtils.stripPackage(type);
         if (isArray) {
-            editorName += _EDITOR_ARRAY;
+            editorName += EDITOR_ARRAY;
         } else {
-            editorName += _EDITOR;
+            editorName += EDITOR;
         }
 
         for (String pkg : this.packages) {
@@ -183,7 +183,7 @@ public class DefaultPropertyEditorFinder extends PropertyEditorFinder {
             }
             return null;
         }  else if(type.isPrimitive()){
-            return find(getWrapperTypeFor(type));
+            return find(BeanUtils.getWrapperTypeFor(type));
         }
 
         return null;

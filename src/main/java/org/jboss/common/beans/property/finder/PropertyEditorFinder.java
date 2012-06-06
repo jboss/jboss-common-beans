@@ -40,56 +40,8 @@ public abstract class PropertyEditorFinder {
 
     protected static Logger logger = Logger.getLogger(PropertyEditorFinder.class.getName());
 
-    protected static final String _EDITOR = "Editor";
-    protected static final String _EDITOR_ARRAY = "Array" + _EDITOR;
-
-    /** Primitive type name -> class map. */
-    private static final Map<String, Class<?>> PRIMITIVE_NAME_TYPE_MAP;
-
-    /** Setup the primitives map. */
-    static {
-        Map<String, Class<?>> tmp = new HashMap<String, Class<?>>();
-        tmp.put("boolean", Boolean.TYPE);
-        tmp.put("byte", Byte.TYPE);
-        tmp.put("char", Character.TYPE);
-        tmp.put("short", Short.TYPE);
-        tmp.put("int", Integer.TYPE);
-        tmp.put("long", Long.TYPE);
-        tmp.put("float", Float.TYPE);
-        tmp.put("double", Double.TYPE);
-        PRIMITIVE_NAME_TYPE_MAP = Collections.unmodifiableMap(tmp);
-    }
-    private static final Map<Class<?>, Class<?>> PRIMITIVES_TO_WRAPPERS;
-    static {
-        Map<Class<?>, Class<?>> tmp2 = new HashMap<Class<?>, Class<?>>();
-        tmp2.put(boolean.class, Boolean.class);
-        tmp2.put(byte.class, Byte.class);
-        tmp2.put(char.class, Character.class);
-        tmp2.put(double.class, Double.class);
-        tmp2.put(float.class, Float.class);
-        tmp2.put(int.class, Integer.class);
-        tmp2.put(long.class, Long.class);
-        tmp2.put(short.class, Short.class);
-        tmp2.put(void.class, Void.class);
-        PRIMITIVES_TO_WRAPPERS = Collections.unmodifiableMap(tmp2);
-    }
-
-    protected static String stripPackage(String fqn) {
-        return fqn.substring(fqn.lastIndexOf('.') + 1, fqn.length());
-    }
-
-    protected static String stripPackage(Class<?> clazz) {
-        final String fqn = clazz.getName();
-        return fqn.substring(fqn.lastIndexOf('.') + 1, fqn.length());
-    }
-
-    protected static Class<?> getPrimitiveTypeForName(final String name) {
-        return (Class<?>) PRIMITIVE_NAME_TYPE_MAP.get(name);
-    }
-
-    protected static Class<?> getWrapperTypeFor(final Class<?> primitive) {
-        return (Class<?>) PRIMITIVES_TO_WRAPPERS.get(primitive);
-    }
+    protected static final String EDITOR = "Editor";
+    protected static final String EDITOR_ARRAY = "Array" + EDITOR;
 
     /**
      * Returns PropertyEditor which capable of converting String into instances of {@code type} parameter.
