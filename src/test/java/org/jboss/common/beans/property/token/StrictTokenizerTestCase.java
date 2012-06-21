@@ -1,8 +1,8 @@
 /*
- * JBoss, Home of Professional Open Source
- * Copyright 2005, JBoss Inc., and individual contributors as indicated
- * by the @authors tag. See the copyright.txt in the distribution for a
- * full listing of individual contributors.
+ * JBoss, Home of Professional Open Source.
+ * Copyright 2011, Red Hat, Inc., and individual contributors
+ * as indicated by the @author tags. See the copyright.txt file in the
+ * distribution for a full listing of individual contributors.
  *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
@@ -19,26 +19,24 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.jboss.common.beans.property;
+
+package org.jboss.common.beans.property.token;
+
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
- * A property editor for {@link java.lang.String}.
+ * @author baranowb
  *
- * It is really a no-op.
- *
- * @author <a href="dimitris@jboss.org">Dimitris Andreadis</a>
  */
-public class StringEditor extends PropertyEditorSupport<String> {
-
-    public StringEditor() {
-        super(String.class);
-    }
-
-    /**
-     * Keep the provided String as is.
-     */
-    public void setAsText(String text) {
-        //TODO: removed BeanUtils.isNull, since its a string, we want the thing
-        setValue(text);
+public class StrictTokenizerTestCase {
+    private final String string = "aa,bbb\rxxx zxcv\t\tnnn\nn zzz";
+    private final String expected[] = new String[]{"aa","bbb\rxxx zxcv\t\tnnn","n zzz"};
+    @Test
+    public void testGreediness(){
+        //, \t\r\n
+        StrictTokenizer greedyTokenizer = new StrictTokenizer();
+        final String[] result = greedyTokenizer.tokenize(string);
+        Assert.assertArrayEquals(expected, result);
     }
 }

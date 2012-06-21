@@ -27,7 +27,6 @@ import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.beans.PropertyEditor;
-import java.beans.PropertyEditorManager;
 import java.lang.reflect.Method;
 import java.util.Collections;
 import java.util.HashMap;
@@ -47,6 +46,18 @@ public final class BeanUtils {
     private static final Logger logger = Logger.getLogger(BeanUtils.class.getName());
     /** The null string */
     private static final String NULL = "null";
+
+    /** Whether we handle nulls */
+    private static boolean disableIsNull = false;
+
+    static{
+        try{
+           if (System.getProperty("org.jboss.common.beans.property.disablenull") != null)
+              disableIsNull = true;
+        }catch (Throwable ignored){
+            logger.log(Level.FINE,"Error retrieving system property org.jboss.util.property.diablenull", ignored);
+        }
+    }
 
     /** Primitive type name -> class map. */
     private static final Map<String, Class<?>> PRIMITIVE_NAME_TYPE_MAP;
@@ -88,6 +99,14 @@ public final class BeanUtils {
         return fqn.substring(fqn.lastIndexOf('.') + 1, fqn.length());
     }
 
+    public static String stripClass(Class<?> clazz) {
+        return clazz.getPackage().getName();
+    }
+
+    public static String stripClass(String clazz) {
+        return clazz.substring(0,clazz.lastIndexOf('.'));
+    }
+
     public static Class<?> getPrimitiveTypeForName(final String name) {
         return (Class<?>) PRIMITIVE_NAME_TYPE_MAP.get(name);
     }
@@ -126,6 +145,16 @@ public final class BeanUtils {
     }
 
     /**
+     * Will the standard editors return null from their
+     * {@link PropertyEditor#setAsText(String)} method for non-primitive targets?
+     *
+     * @return True if nulls can be returned; false otherwise.
+     */
+    public static boolean isNullHandlingEnabled(){
+       return !disableIsNull;
+    }
+
+    /**
      * Whether a string is interpreted as the null value, including the empty string.
      *
      * @param value the value
@@ -145,6 +174,9 @@ public final class BeanUtils {
      */
     public static boolean isNull(final String value, final boolean trim, final boolean empty) {
 
+       // For backwards compatibility
+        if (disableIsNull)
+           return false;
         // No value?
         if (value == null)
             return true;
@@ -261,7 +293,7 @@ public final class BeanUtils {
                 logger.finest("Property editor found for: " + name + ", editor: " + pd + ", setter: " + setter);
             if (setter != null) {
                 Class<?> ptype = pd.getPropertyType();
-                PropertyEditor editor = PropertyEditorManager.findEditor(ptype);
+                PropertyEditor editor = PropertyEditorFinder.getInstance().find(ptype);
                 if (editor == null) {
                     if (trace)
                         logger.finest("Failed to find property editor for: " + name);
