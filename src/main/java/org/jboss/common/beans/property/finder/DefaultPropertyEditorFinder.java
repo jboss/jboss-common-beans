@@ -166,6 +166,14 @@ public class DefaultPropertyEditorFinder extends PropertyEditorFinder {
             editorName += EDITOR;
         }
 
+        try {
+            String searchName = BeanUtils.stripClass(type) + "." + editorName;
+            editorClass = (Class<? extends PropertyEditor>) BeanUtils.findClass(searchName);
+            return editorClass.newInstance();
+        } catch (Exception e) {
+             //e.printStackTrace();
+        }
+
         for (String pkg : this.packages) {
             try {
                 String searchName = pkg + "." + editorName;
