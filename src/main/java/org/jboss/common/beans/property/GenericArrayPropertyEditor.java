@@ -24,10 +24,16 @@ package org.jboss.common.beans.property;
 
 import java.beans.PropertyEditorManager;
 import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.ServiceLoader;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.jboss.common.beans.property.finder.DefaultPropertyEditorFinder;
 import org.jboss.common.beans.property.finder.PropertyEditorFinder;
+import org.jboss.common.beans.property.token.ArrayTokenizer;
+import org.jboss.common.beans.property.token.StrictTokenizer;
 
 /**
  * Generic array support editor. Depending on type of array it performs all required operations to transform from/to text. It
@@ -45,6 +51,8 @@ import org.jboss.common.beans.property.finder.PropertyEditorFinder;
  */
 public class GenericArrayPropertyEditor<T> extends PropertyEditorSupport<T> {
 
+    //note this will hide real class, but its better than having it init on each PE instance.
+    private static final Logger logger = Logger.getLogger(GenericArrayPropertyEditor.class.getName());
     private final Class<?> cellType;
 
     /**
@@ -120,13 +128,8 @@ public class GenericArrayPropertyEditor<T> extends PropertyEditorSupport<T> {
 
     protected String[] tokenize(String text) {
         // makes us iterate twice...
-        StringTokenizer tokenizer = new StringTokenizer(text, "\r\n,");
-        String[] tokens = new String[tokenizer.countTokens()];
-        int index = 0;
-        while (tokenizer.hasMoreElements()) {
-            tokens[index++] = tokenizer.nextToken();
-        }
-        return tokens;
+        ArrayTokenizer arrayTokenizer = getTokenizer();
+        return arrayTokenizer.tokenize(text);
     }
 
     protected String encode(String[] v) {
@@ -141,4 +144,19 @@ public class GenericArrayPropertyEditor<T> extends PropertyEditorSupport<T> {
     protected Class<?> getCellType() {
         return this.cellType;
     }
+
+   protected ArrayTokenizer getTokenizer(){
+       try{
+           ServiceLoader<ArrayTokenizer> service = ServiceLoader.load(ArrayTokenizer.class);
+           Iterator<ArrayTokenizer> it = service.iterator();
+           if(it.hasNext()){
+               return it.next();
+           }
+       }catch(Exception e){
+           if(logger.isLoggable(Level.FINEST)){
+               logger.log(Level.FINEST,"Failed to load tokenizer via ServiceLoader, falling back to '"+StrictTokenizer.class.getName()+"'.",e);
+           }
+       }
+       return new StrictTokenizer();
+   }
 }
