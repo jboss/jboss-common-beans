@@ -1,8 +1,8 @@
 /*
- * JBoss, Home of Professional Open Source
- * Copyright 2005, JBoss Inc., and individual contributors as indicated
- * by the @authors tag. See the copyright.txt in the distribution for a
- * full listing of individual contributors.
+ * JBoss, Home of Professional Open Source.
+ * Copyright 2011, Red Hat, Inc., and individual contributors
+ * as indicated by the @author tags. See the copyright.txt file in the
+ * distribution for a full listing of individual contributors.
  *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
@@ -19,26 +19,35 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.jboss.common.beans.property;
+
+package org.jboss.common.beans.property.token;
+
 
 /**
- * A property editor for {@link java.lang.String}.
+ * Strict array tokenizer. Delimiters used are
+ * <ul>
+ * <li>','</li>
+ * <li>'\n'</li>
+ * </ul>
  *
- * It is really a no-op.
+ * @author baranowb
  *
- * @author <a href="dimitris@jboss.org">Dimitris Andreadis</a>
  */
-public class StringEditor extends PropertyEditorSupport<String> {
-
-    public StringEditor() {
-        super(String.class);
-    }
+public class StrictTokenizer extends ArrayTokenizer {
 
     /**
-     * Keep the provided String as is.
+     * Delimiters for this class, '\n' and ','
      */
-    public void setAsText(String text) {
-        //TODO: removed BeanUtils.isNull, since its a string, we want the thing
-        setValue(text);
+    private static final String DELIMITERS = ",\n";
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see org.jboss.common.beans.property.token.ArrayTokenizer#getDelimiters()
+     */
+    @Override
+    protected String getDelimiters() {
+        return DELIMITERS;
     }
+
 }
