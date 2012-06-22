@@ -26,6 +26,8 @@ import java.beans.PropertyEditor;
 import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.jboss.common.beans.property.BeanUtils;
 import org.jboss.common.beans.property.BooleanArrayEditor;
@@ -48,13 +50,14 @@ import org.jboss.common.beans.property.LongEditor;
 import org.jboss.common.beans.property.ShortArrayEditor;
 import org.jboss.common.beans.property.ShortEditor;
 import org.jboss.common.beans.property.StringArrayEditor;
+import org.jboss.common.beans.property.token.StrictTokenizer;
 
 /**
  * @author baranowb
  *
  */
 public class DefaultPropertyEditorFinder extends PropertyEditorFinder {
-
+    private static final Logger logger = Logger.getLogger(DefaultPropertyEditorFinder.class.getName());
     protected Map<Class<?>, Class<? extends PropertyEditor>> register = new HashMap<Class<?>, Class<? extends PropertyEditor>>();
 
     public DefaultPropertyEditorFinder() {
@@ -165,14 +168,28 @@ public class DefaultPropertyEditorFinder extends PropertyEditorFinder {
         } else {
             editorName += EDITOR;
         }
+        String searchName = null;
+        try {
+            searchName = BeanUtils.stripClass(type) + "." + editorName;
+            editorClass = (Class<? extends PropertyEditor>) BeanUtils.findClass(searchName);
+            return editorClass.newInstance();
+        } catch (Exception e) {
+            //catching, to be compliant with JDK PEM
+            if(logger.isLoggable(Level.FINEST)){
+                logger.log(Level.FINEST,"Failed to instantiate property editor class  '"+searchName+"'.",e);
+            }
+        }
 
         for (String pkg : this.packages) {
             try {
-                String searchName = pkg + "." + editorName;
+                searchName = pkg + "." + editorName;
                 editorClass = (Class<? extends PropertyEditor>) BeanUtils.findClass(searchName);
                 return editorClass.newInstance();
             } catch (Exception e) {
-                 //e.printStackTrace();
+                //catching, to be compliant with JDK PEM
+                if(logger.isLoggable(Level.FINEST)){
+                    logger.log(Level.FINEST,"Failed to instantiate property editor class  '"+searchName+"'.",e);
+                }
             }
         }
 

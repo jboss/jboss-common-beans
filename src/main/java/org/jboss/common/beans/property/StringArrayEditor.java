@@ -36,6 +36,20 @@ public class StringArrayEditor extends GenericArrayPropertyEditor<String[]> {
         super(String[].class);
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see org.jboss.common.beans.property.PropertyEditorSupport#setAsText(java.lang.String)
+     */
+    @Override
+    public void setAsText(String text) throws IllegalArgumentException {
+        if(text == null){
+            setValue(null);
+            return;
+        }
+        setValue(tokenize(text));
+    }
+
     protected String[] tokenize(String text) {
         ArrayList<String> list = new ArrayList<String>();
         StringBuffer tmp = new StringBuffer();
