@@ -52,7 +52,7 @@ public class ElementEditor extends XMLEditorSupport<Element> {
      */
     @Override
     public void setAsText(String text) {
-        if (BeanUtils.isNull(text)) {
+        if (PropertyEditors.isNull(text)) {
             setValue(null);
             return;
         }

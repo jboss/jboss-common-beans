@@ -36,7 +36,7 @@ public class BigDecimalEditor extends PropertyEditorSupport<BigDecimal> {
 
     @Override
     public void setAsText(final String text) {
-        if (BeanUtils.isNull(text)) {
+        if (PropertyEditors.isNull(text)) {
             setValue(null);
         } else {
             try {

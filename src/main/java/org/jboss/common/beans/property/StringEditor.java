@@ -24,7 +24,9 @@ package org.jboss.common.beans.property;
 /**
  * A property editor for {@link java.lang.String}.
  *
- * It is really a no-op.
+ * It is really a no-op but it is hoped to provide slightly better performance, by avoiding the continuous lookup/failure of a
+ * property editor for plain Strings within the org.jboss.util.propertyeditor package, before falling back to the jdk provided
+ * String editor.
  *
  * @author <a href="dimitris@jboss.org">Dimitris Andreadis</a>
  */
@@ -38,7 +40,10 @@ public class StringEditor extends PropertyEditorSupport<String> {
      * Keep the provided String as is.
      */
     public void setAsText(String text) {
-        //TODO: removed BeanUtils.isNull, since its a string, we want the thing
+        if (PropertyEditors.isNull(text)){
+            setValue(null);
+            return;
+        }
         setValue(text);
     }
 }

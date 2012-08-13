@@ -39,7 +39,7 @@ public class URIEditor extends PropertyEditorSupport<URI> {
     }
 
     public void setAsText(String text) {
-        if (BeanUtils.isNull(text)) {
+        if (PropertyEditors.isNull(text)) {
             setValue(null);
             return;
         }

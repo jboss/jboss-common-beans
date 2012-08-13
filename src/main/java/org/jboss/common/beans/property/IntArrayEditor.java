@@ -1,8 +1,8 @@
 /*
- * JBoss, Home of Professional Open Source.
- * Copyright 2011, Red Hat, Inc., and individual contributors
- * as indicated by the @author tags. See the copyright.txt file in the
- * distribution for a full listing of individual contributors.
+ * JBoss, Home of Professional Open Source
+ * Copyright 2005, JBoss Inc., and individual contributors as indicated
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
  *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
@@ -19,34 +19,16 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-
-package org.jboss.common.beans.property.token;
+package org.jboss.common.beans.property;
 
 /**
- * Greedy array tokenizer. Delimiters used are
- * <ul>
- * <li>','</li>
- * <li>' '</li>
- * <li>'\t'</li>
- * <li>'\r'</li>
- * <li>'\n'</li>
- * </ul>
- *
- * @author baranowb
+ * A property editor for int[].
  *
  */
-public class GreedyTokenizer extends ArrayTokenizer {
+public class IntArrayEditor extends GenericArrayPropertyEditor<int[]> {
 
-    private static final String DELIMITERS = ", \t\r\n";
+    public IntArrayEditor() {
+        super(int[].class);
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see org.jboss.common.beans.property.token.ArrayTokenizer#getDelimiters()
-     */
-    @Override
-    protected String getDelimiters() {
-        return DELIMITERS;
     }
-
 }

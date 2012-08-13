@@ -39,7 +39,7 @@ public class PropertiesEditor extends PropertyEditorSupport<Properties> {
 
     @Override
     public void setAsText(final String text) {
-        if (BeanUtils.isNull(text)) {
+        if (PropertyEditors.isNull(text)) {
             setValue(null);
             return;
         }

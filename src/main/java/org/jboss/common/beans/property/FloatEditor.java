@@ -37,7 +37,7 @@ public class FloatEditor extends PropertyEditorSupport<Float> {
      */
     @Override
     public void setAsText(final String text) {
-        if (BeanUtils.isNull(text)) {
+        if (PropertyEditors.isNull(text)) {
             setValue(null);
             return;
         }

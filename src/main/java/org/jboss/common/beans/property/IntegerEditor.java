@@ -37,7 +37,7 @@ public class IntegerEditor extends PropertyEditorSupport<Integer> {
      */
     @Override
     public void setAsText(final String text) {
-        if (BeanUtils.isNull(text)) {
+        if (PropertyEditors.isNull(text)) {
             setValue(null);
             return;
         }

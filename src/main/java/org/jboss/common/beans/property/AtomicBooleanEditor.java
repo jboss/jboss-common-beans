@@ -39,7 +39,7 @@ public class AtomicBooleanEditor extends PropertyEditorSupport<AtomicBoolean> {
 
     @Override
     public void setAsText(final String text) {
-        if (BeanUtils.isNull(text)) {
+        if (PropertyEditors.isNull(text)) {
             setValue(null);
         } else {
             setValue(new AtomicBoolean(Boolean.parseBoolean(text)));

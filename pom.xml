@@ -17,7 +17,7 @@
 
     <groupId>org.jboss.common</groupId>
     <artifactId>jboss-common-beans</artifactId>
-    <version>1.0.2.BETA1-SNAPSHOT</version>
+    <version>1.0.0.Final</version>
 
     <name>JBoss Common Beans</name>
     <description>Common classes for Java Beans</description>
@@ -38,7 +38,7 @@
     </scm>
     
     <properties>
-        <maven.min.version>2.0.11</maven.min.version>
+
         <!-- Build configuration -->
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
