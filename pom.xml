@@ -17,7 +17,7 @@
 
     <groupId>org.jboss.common</groupId>
     <artifactId>jboss-common-beans</artifactId>
-    <version>1.0.2.BETA1-SNAPSHOT</version>
+    <version>1.0.1.Final</version>
 
     <name>JBoss Common Beans</name>
     <description>Common classes for Java Beans</description>
