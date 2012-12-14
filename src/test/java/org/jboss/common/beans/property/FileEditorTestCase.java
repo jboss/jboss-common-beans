@@ -25,6 +25,8 @@ package org.jboss.common.beans.property;
 import java.io.File;
 import java.util.Comparator;
 
+import org.junit.internal.runners.statements.Fail;
+
 /**
  * @author baranowb
  *
@@ -43,7 +45,11 @@ public class FileEditorTestCase extends PropertyEditorTester<File> {
 
     @Override
     public String[] getConvertedToText() {
-        return new String[] { "/a/test1", "/a/test2" };
+        try{
+            return new String[] { new File("/a/test1").getCanonicalFile().toString(), new File("/a/subdir/../test2").getCanonicalFile().toString() };
+        }catch(Exception e){
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
