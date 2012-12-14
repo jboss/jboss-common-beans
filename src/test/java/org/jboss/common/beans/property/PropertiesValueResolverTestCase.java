@@ -37,6 +37,19 @@ import org.junit.Test;
  */
 public class PropertiesValueResolverTestCase {
 
+    private String userEnvPropertyName;
+    
+    
+    public PropertiesValueResolverTestCase() {
+        super();
+        
+        if(PropertyEditorTester.isOSWindows()){
+            userEnvPropertyName = "USERNAME";
+        } else {
+            userEnvPropertyName = "USER";
+        }
+    }
+
     @Test
     public void testBaseReplacement() {
         String val1 = "replaced-1";
@@ -80,7 +93,6 @@ public class PropertiesValueResolverTestCase {
     public void testAlternativeReplacementFail() {
 
         String val1 = "replaced-1";
-        String val2 = "coocooBird";
         System.setProperty("val1", val1);
 
         String toParse = "x=${val1};y=${dontExist,DontExistEither}";
@@ -127,10 +139,11 @@ public class PropertiesValueResolverTestCase {
     public void testEnvReplacement() {
         // cant set ENV, we need to use real vars here.
         Map<String, String> env = System.getenv();
+
         String xyz = "Mocca";
         System.setProperty("xyz", xyz);
-        String expected = "x=" + env.get("USER") + ";home=" + env.get("HOME") + ";last=" + xyz;
-        String toParse = "x=${env.USER};home=${env.HOME};last=${xyz}";
+        String expected = "x=" + env.get(userEnvPropertyName) + ";home=" + env.get("HOME") + ";last=" + xyz;
+        String toParse = "x=${env."+userEnvPropertyName+"};home=${env.HOME};last=${xyz}";
         String replaced = PropertiesValueResolver.replaceProperties(toParse);
 
         assertEquals("Simple replacement from System.properties failed!", expected, replaced);
@@ -158,10 +171,11 @@ public class PropertiesValueResolverTestCase {
     public void testEnvAlternativeReplacement() {
         // cant set ENV, we need to use real vars here.
         Map<String, String> env = System.getenv();
+
         String xyz = "Mocca";
         System.setProperty("xyz", xyz);
-        String expected = "x=" + env.get("USER") + ";home=" + env.get("HOME") + ";last=" + xyz;
-        String toParse = "x=${IDontExist,env.USER};home=${env.IdontExist,env.HOME};last=${xyz}";
+        String expected = "x=" + env.get(userEnvPropertyName) + ";home=" + env.get("HOME") + ";last=" + xyz;
+        String toParse = "x=${IDontExist,env."+userEnvPropertyName+"};home=${env.IdontExist,env.HOME};last=${xyz}";
         String replaced = PropertiesValueResolver.replaceProperties(toParse);
 
         assertEquals("Simple replacement from System.properties failed!", expected, replaced);
@@ -191,12 +205,11 @@ public class PropertiesValueResolverTestCase {
         Map<String, String> env = System.getenv();
         String xyz = "Mocca";
         System.setProperty("xyz", xyz);
-        String expected = "x=" + env.get("USER") + ";home=" + env.get("HOME") + ";last=" + xyz;
-        String toParse = "x=${IDontExist,env.USER:env.DISPLAY};home=${env.IdontExist,env.HOME};last=${xyz}";
+        String expected = "x=" + env.get(userEnvPropertyName) + ";home=" + env.get("HOME") + ";last=" + xyz;
+        String toParse = "x=${IDontExist,env."+userEnvPropertyName+":env.DISPLAY};home=${env.IdontExist,env.HOME};last=${xyz}";
         String replaced = PropertiesValueResolver.replaceProperties(toParse);
 
         assertEquals("Simple replacement from System.properties failed!", expected, replaced);
 
     }
-
 }

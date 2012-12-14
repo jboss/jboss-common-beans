@@ -147,4 +147,12 @@ public abstract class PropertyEditorTester<T> {
 
     public abstract Class<T> getType();
 
+    public static boolean isOSWindows(){
+        final String val = System.getProperty("os.name");
+        if(val!=null && val.startsWith("Windows")){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
