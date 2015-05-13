@@ -23,12 +23,8 @@
 package org.jboss.common.beans.property.finder;
 
 import java.beans.PropertyEditor;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.ServiceLoader;
-import java.util.logging.Logger;
 
 /**
  * Simple abstract class to provide base for PropertyEditorFinder service.
@@ -37,8 +33,6 @@ import java.util.logging.Logger;
  *
  */
 public abstract class PropertyEditorFinder {
-
-    protected static Logger logger = Logger.getLogger(PropertyEditorFinder.class.getName());
 
     protected static final String EDITOR = "Editor";
     protected static final String EDITOR_ARRAY = "Array" + EDITOR;
@@ -77,8 +71,8 @@ public abstract class PropertyEditorFinder {
 
     private static volatile PropertyEditorFinder _INSTANCE;
 
-    private static void init() {
-        final ServiceLoader<PropertyEditorFinder> service = ServiceLoader.load(PropertyEditorFinder.class);
+    private static void init(ClassLoader classLoader) {
+        final ServiceLoader<PropertyEditorFinder> service = ServiceLoader.load(PropertyEditorFinder.class, classLoader);
         final Iterator<PropertyEditorFinder> it = service.iterator();
         if (it.hasNext()) {
             _INSTANCE = it.next();
@@ -91,17 +85,21 @@ public abstract class PropertyEditorFinder {
      *
      * @return Instance of PropertyEditorFinder.
      */
-    public static PropertyEditorFinder getInstance() {
+    public static PropertyEditorFinder getInstance(ClassLoader classLoader) {
         PropertyEditorFinder result = _INSTANCE;
         if (result == null) {
             synchronized (_LOCK) {
                 result = _INSTANCE;
                 if (result == null) {
-                    init();
+                    init(classLoader);
                     result = _INSTANCE;
                 }
             }
         }
         return result;
+    }
+
+    public static PropertyEditorFinder getInstance() {
+        return getInstance(PropertyEditorFinder.class.getClassLoader());
     }
 }
