@@ -28,24 +28,23 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @author baranowb
- * 
  */
 public class GenericArrayEditorTestCase extends PropertyEditorTester<AtomicBoolean[]> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "true,false,TRUE,FALSE,tRuE,FaLsE"/* , null */};
+        return new String[]{"true,false,TRUE,FALSE,tRuE,FaLsE"/* , null */};
     }
 
     @Override
     public Object[] getOutputData() {
-        return new Object[] { new AtomicBoolean[] { new AtomicBoolean(Boolean.TRUE), new AtomicBoolean(Boolean.FALSE), new AtomicBoolean(Boolean.TRUE), new AtomicBoolean(Boolean.FALSE), new AtomicBoolean(Boolean.TRUE),
-                new AtomicBoolean(Boolean.FALSE) } /* , null */};
+        return new Object[]{new AtomicBoolean[]{new AtomicBoolean(Boolean.TRUE), new AtomicBoolean(Boolean.FALSE), new AtomicBoolean(Boolean.TRUE), new AtomicBoolean(Boolean.FALSE), new AtomicBoolean(Boolean.TRUE),
+                new AtomicBoolean(Boolean.FALSE)} /* , null */};
     }
 
     @Override
     public String[] getConvertedToText() {
-        return new String[] { "true,false,true,false,true,false"/* , null */};
+        return new String[]{"true,false,true,false,true,false"/* , null */};
     }
 
     @Override
@@ -71,14 +70,14 @@ public class GenericArrayEditorTestCase extends PropertyEditorTester<AtomicBoole
 
         @Override
         public int compare(AtomicBoolean[] o1, AtomicBoolean[] o2) {
-            if(o1.length!=o2.length){
+            if (o1.length != o2.length) {
                 return 1;
             }
-            
-            for(int index = 0; index< o1.length; index++){
+
+            for (int index = 0; index < o1.length; index++) {
                 AtomicBoolean a1 = o1[index];
                 AtomicBoolean a2 = o2[index];
-                if(a1.get()!= a2.get()){
+                if (a1.get() != a2.get()) {
                     return 1;
                 }
             }

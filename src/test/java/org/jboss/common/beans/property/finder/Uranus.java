@@ -24,7 +24,6 @@ package org.jboss.common.beans.property.finder;
 
 /**
  * @author baranowb
- * 
  */
 public class Uranus {
 
@@ -72,18 +71,13 @@ public class Uranus {
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
+        if (this == obj) { return true; }
+        if (obj == null) { return false; }
+        if (getClass() != obj.getClass()) { return false; }
         Uranus other = (Uranus) obj;
         if (nexusJupiterIncident == null) {
-            if (other.nexusJupiterIncident != null)
-                return false;
-        } else if (!nexusJupiterIncident.equals(other.nexusJupiterIncident))
-            return false;
+            if (other.nexusJupiterIncident != null) { return false; }
+        } else if (!nexusJupiterIncident.equals(other.nexusJupiterIncident)) { return false; }
         return true;
     }
 

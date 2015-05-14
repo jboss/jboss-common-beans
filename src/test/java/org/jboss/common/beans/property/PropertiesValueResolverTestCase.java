@@ -31,19 +31,18 @@ import org.junit.Test;
 
 /**
  * Test case for Resolver.
- * 
+ *
  * @author baranowb
- * 
  */
 public class PropertiesValueResolverTestCase {
 
     private String userEnvPropertyName;
-    
-    
+
+
     public PropertiesValueResolverTestCase() {
         super();
-        
-        if(PropertyEditorTester.isOSWindows()){
+
+        if (PropertyEditorTester.isOSWindows()) {
             userEnvPropertyName = "USERNAME";
         } else {
             userEnvPropertyName = "USER";
@@ -143,7 +142,7 @@ public class PropertiesValueResolverTestCase {
         String xyz = "Mocca";
         System.setProperty("xyz", xyz);
         String expected = "x=" + env.get(userEnvPropertyName) + ";home=" + env.get("HOME") + ";last=" + xyz;
-        String toParse = "x=${env."+userEnvPropertyName+"};home=${env.HOME};last=${xyz}";
+        String toParse = "x=${env." + userEnvPropertyName + "};home=${env.HOME};last=${xyz}";
         String replaced = PropertiesValueResolver.replaceProperties(toParse);
 
         assertEquals("Simple replacement from System.properties failed!", expected, replaced);
@@ -175,7 +174,7 @@ public class PropertiesValueResolverTestCase {
         String xyz = "Mocca";
         System.setProperty("xyz", xyz);
         String expected = "x=" + env.get(userEnvPropertyName) + ";home=" + env.get("HOME") + ";last=" + xyz;
-        String toParse = "x=${IDontExist,env."+userEnvPropertyName+"};home=${env.IdontExist,env.HOME};last=${xyz}";
+        String toParse = "x=${IDontExist,env." + userEnvPropertyName + "};home=${env.IdontExist,env.HOME};last=${xyz}";
         String replaced = PropertiesValueResolver.replaceProperties(toParse);
 
         assertEquals("Simple replacement from System.properties failed!", expected, replaced);
@@ -206,7 +205,7 @@ public class PropertiesValueResolverTestCase {
         String xyz = "Mocca";
         System.setProperty("xyz", xyz);
         String expected = "x=" + env.get(userEnvPropertyName) + ";home=" + env.get("HOME") + ";last=" + xyz;
-        String toParse = "x=${IDontExist,env."+userEnvPropertyName+":env.DISPLAY};home=${env.IdontExist,env.HOME};last=${xyz}";
+        String toParse = "x=${IDontExist,env." + userEnvPropertyName + ":env.DISPLAY};home=${env.IdontExist,env.HOME};last=${xyz}";
         String replaced = PropertiesValueResolver.replaceProperties(toParse);
 
         assertEquals("Simple replacement from System.properties failed!", expected, replaced);

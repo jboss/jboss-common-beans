@@ -27,23 +27,22 @@ import java.util.Comparator;
 
 /**
  * @author baranowb
- * 
  */
 public class ShortArrayEditorTestCase extends PropertyEditorTester<short[]> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "1,-1,0,0xA0" };
+        return new String[]{"1,-1,0,0xA0"};
     }
 
     @Override
     public Object[] getOutputData() {
-        return new Object[] { new short[]{1,-1,0,0xA0} };
+        return new Object[]{new short[]{1, -1, 0, 0xA0}};
     }
 
     @Override
     public String[] getConvertedToText() {
-        return new String[] { "1,-1,0,160" };
+        return new String[]{"1,-1,0,160"};
     }
 
     @Override
@@ -64,6 +63,7 @@ public class ShortArrayEditorTestCase extends PropertyEditorTester<short[]> {
             return Arrays.toString(t);
         }
     }
+
     class ShortArrayComparator implements Comparator<short[]> {
 
         @Override

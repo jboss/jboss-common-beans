@@ -22,19 +22,21 @@
 
 package org.jboss.common.beans.property;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  * Simple class to ensure that proper events are fired.
- * 
+ *
  * @author baranowb
- * 
  */
 public class PropertyChangeListenerTestCase {
 
@@ -67,7 +69,7 @@ public class PropertyChangeListenerTestCase {
         assertEquals(editor, newEvent.getSource());
         assertEquals(null, newEvent.getOldValue());
         assertEquals(new Double(1), newEvent.getNewValue());
-        
+
         PropertyChangeEvent oldEvent = this.oldTestListener.events.get(0);
         assertEquals(editor, newEvent.getSource());
         assertEquals(null, newEvent.getOldValue());
@@ -80,23 +82,23 @@ public class PropertyChangeListenerTestCase {
         this.editor.setValue(null);
         assertEquals(2, this.testListener.events.size());
         assertEquals(2, this.oldTestListener.events.size());
-        
-        
+
+
         org.jboss.common.beans.property.PropertyChangeEvent<Double> newEvent = this.testListener.events.get(0);
         assertEquals(editor, newEvent.getSource());
         assertEquals(null, newEvent.getOldValue());
         assertEquals(new Double(2), newEvent.getNewValue());
-        
+
         newEvent = this.testListener.events.get(1);
         assertEquals(editor, newEvent.getSource());
         assertEquals(new Double(2), newEvent.getOldValue());
         assertEquals(null, newEvent.getNewValue());
-        
+
         PropertyChangeEvent oldEvent = this.oldTestListener.events.get(0);
         assertEquals(editor, newEvent.getSource());
         assertEquals(new Double(2), newEvent.getOldValue());
         assertEquals(null, newEvent.getNewValue());
-        
+
         oldEvent = this.oldTestListener.events.get(1);
         assertEquals(editor, newEvent.getSource());
         assertEquals(new Double(2), newEvent.getOldValue());
@@ -119,7 +121,7 @@ public class PropertyChangeListenerTestCase {
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
          */
         @Override
@@ -129,7 +131,7 @@ public class PropertyChangeListenerTestCase {
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see
          * org.jboss.common.beans.property.PropertyChangeListener#propertyChange(org.jboss.common.beans.property.PropertyChangeEvent
          * )

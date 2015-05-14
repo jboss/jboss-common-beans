@@ -26,23 +26,22 @@ import java.util.Comparator;
 
 /**
  * @author baranowb
- * 
  */
 public class CharacterEditorTestCase extends PropertyEditorTester<Character> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "A", "a", "Z", "z" };
+        return new String[]{"A", "a", "Z", "z"};
     }
 
     @Override
     public Object[] getOutputData() {
-        return new Object[] { new Character('A'), new Character('a'), new Character('Z'), new Character('z') };
+        return new Object[]{new Character('A'), new Character('a'), new Character('Z'), new Character('z')};
     }
 
     @Override
     public String[] getConvertedToText() {
-        return new String[] { "A", "a", "Z", "z" };
+        return new String[]{"A", "a", "Z", "z"};
     }
 
     @Override

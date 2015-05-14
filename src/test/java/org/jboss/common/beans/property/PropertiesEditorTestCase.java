@@ -29,7 +29,6 @@ import org.junit.Before;
 
 /**
  * @author baranowb
- *
  */
 public class PropertiesEditorTestCase extends PropertyEditorTester<Properties> {
 
@@ -46,19 +45,19 @@ public class PropertiesEditorTestCase extends PropertyEditorTester<Properties> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "prop1=value1\nprop2=value2\nprop3=value3\nprop32=value3\n" };
+        return new String[]{"prop1=value1\nprop2=value2\nprop3=value3\nprop32=value3\n"};
     }
 
     @Override
     public Object[] getOutputData() {
         // The expected instance for each inputData value
 
-        return new Object[] { testedProperties };
+        return new Object[]{testedProperties};
     }
 
     @Override
     public String[] getConvertedToText() {
-        return new String[] { testedProperties.toString() };
+        return new String[]{testedProperties.toString()};
     }
 
     @Override

@@ -26,13 +26,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.beans.PropertyEditor;
-import java.beans.PropertyEditorManager;
 import java.util.Comparator;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import org.jboss.common.beans.property.finder.DefaultPropertyEditorFinder;
 import org.jboss.common.beans.property.finder.PropertyEditorFinder;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,13 +39,12 @@ import org.w3c.dom.NodeList;
 
 /**
  * @author baranowb
- * 
  */
 public abstract class PropertyEditorTester<T> {
 
     protected final Logger logger = Logger.getLogger(this.getClass().getName());
     protected PropertyEditorFinder finder;
-    
+
     @Before
     public void init() {
         // initialize locale, this is done for date editor, it wont pass test unless its run on EN system :).
@@ -117,15 +114,16 @@ public abstract class PropertyEditorTester<T> {
         String value = node.getNodeValue();
         logger.finest(indent + "Name=" + name + ", Value=" + value);
         NodeList list = node.getChildNodes();
-        for (int i = 0; i < list.getLength(); i++)
-            log(list.item(i), indent + indent);
+        for (int i = 0; i < list.getLength(); i++) { log(list.item(i), indent + indent); }
     }
 
     protected String logString(String s) {
         return s != null ? s : "<null>";
     }
+
     /**
      * Default log method for T. Impl should override to provide something better.
+     *
      * @param t
      * @return
      */
@@ -147,9 +145,9 @@ public abstract class PropertyEditorTester<T> {
 
     public abstract Class<T> getType();
 
-    public static boolean isOSWindows(){
+    public static boolean isOSWindows() {
         final String val = System.getProperty("os.name");
-        if(val!=null && val.startsWith("Windows")){
+        if (val != null && val.startsWith("Windows")) {
             return true;
         } else {
             return false;

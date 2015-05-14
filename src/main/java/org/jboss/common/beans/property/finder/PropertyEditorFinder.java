@@ -80,7 +80,7 @@ public abstract class PropertyEditorFinder {
     }
 
     /**
-     * Returns instance of property finder. Instance is loaded as {@java.util.ServiceLoader} service.
+     * Returns instance of property finder. Instance is loaded as {@link java.util.ServiceLoader} service.
      * If no service is found, this method, this method will return <b>null</b>.
      *
      * @return Instance of PropertyEditorFinder.

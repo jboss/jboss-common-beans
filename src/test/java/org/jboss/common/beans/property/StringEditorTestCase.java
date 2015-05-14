@@ -26,18 +26,17 @@ import java.util.Comparator;
 
 /**
  * @author baranowb
- * 
  */
 public class StringEditorTestCase extends PropertyEditorTester<String> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "JBoss, Home of Professional Open Source" };
+        return new String[]{"JBoss, Home of Professional Open Source"};
     }
 
     @Override
     public Object[] getOutputData() {
-        return new Object[] { "JBoss, Home of Professional Open Source" };
+        return new Object[]{"JBoss, Home of Professional Open Source"};
     }
 
     @Override

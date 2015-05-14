@@ -26,23 +26,22 @@ import java.util.Comparator;
 
 /**
  * @author baranowb
- * 
  */
 public class DoubleEditorTestCase extends PropertyEditorTester<Double> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "1", "-1", "0", "1000.1" };
+        return new String[]{"1", "-1", "0", "1000.1"};
     }
 
     @Override
     public Object[] getOutputData() {
-        return new Object[] { Double.valueOf("1"), Double.valueOf("-1"), Double.valueOf("0"), Double.valueOf("1000.1") };
+        return new Object[]{Double.valueOf("1"), Double.valueOf("-1"), Double.valueOf("0"), Double.valueOf("1000.1")};
     }
 
     @Override
     public String[] getConvertedToText() {
-        return new String[] { "1.0", "-1.0", "0.0", "1000.1" };
+        return new String[]{"1.0", "-1.0", "0.0", "1000.1"};
     }
 
     @Override

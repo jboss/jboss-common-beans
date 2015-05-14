@@ -27,18 +27,17 @@ import java.util.Comparator;
 
 /**
  * @author baranowb
- * 
  */
 public class ClassArrayEditorTestCase extends PropertyEditorTester<Class[]> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "java.lang.Integer,java.lang.Float" };
+        return new String[]{"java.lang.Integer,java.lang.Float"};
     }
 
     @Override
     public Object[] getOutputData() {
-        return new Object[] { new Class[] { Integer.class, Float.class } };
+        return new Object[]{new Class[]{Integer.class, Float.class}};
     }
 
     @Override
@@ -55,7 +54,7 @@ public class ClassArrayEditorTestCase extends PropertyEditorTester<Class[]> {
     public Class getType() {
         return Class[].class;
     }
-    
+
     @Override
     public String logT(Class[] t) {
         if (t == null) {

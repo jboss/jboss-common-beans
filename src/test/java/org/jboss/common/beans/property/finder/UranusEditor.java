@@ -26,14 +26,14 @@ import org.jboss.common.beans.property.PropertyEditorSupport;
 
 /**
  * @author baranowb
- *
  */
 public class UranusEditor extends PropertyEditorSupport<Uranus> {
 
-    
-    public UranusEditor(){
+
+    public UranusEditor() {
         super(Uranus.class);
     }
+
     /* (non-Javadoc)
      * @see org.jboss.common.beans.property.PropertyEditorSupport#setAsText(java.lang.String)
      */
@@ -42,5 +42,5 @@ public class UranusEditor extends PropertyEditorSupport<Uranus> {
         this.setValue(new Uranus(text));
     }
 
-   
+
 }

@@ -50,7 +50,6 @@ import org.jboss.common.beans.property.LongEditor;
 import org.jboss.common.beans.property.ShortArrayEditor;
 import org.jboss.common.beans.property.ShortEditor;
 import org.jboss.common.beans.property.StringArrayEditor;
-import org.jboss.common.beans.property.token.StrictTokenizer;
 
 /**
  * @author baranowb

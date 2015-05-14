@@ -27,24 +27,23 @@ import java.util.Comparator;
 
 /**
  * @author baranowb
- * 
  */
 public class BooleanArrayEditorTestCase extends PropertyEditorTester<boolean[]> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "true,false,TRUE,FALSE,tRuE,FaLsE"/* , null */};
+        return new String[]{"true,false,TRUE,FALSE,tRuE,FaLsE"/* , null */};
     }
 
     @Override
     public Object[] getOutputData() {
-        return new Object[] { new boolean[] { Boolean.TRUE, Boolean.FALSE, Boolean.TRUE, Boolean.FALSE, Boolean.TRUE,
-                Boolean.FALSE } /* , null */};
+        return new Object[]{new boolean[]{Boolean.TRUE, Boolean.FALSE, Boolean.TRUE, Boolean.FALSE, Boolean.TRUE,
+                Boolean.FALSE} /* , null */};
     }
 
     @Override
     public String[] getConvertedToText() {
-        return new String[] { "true,false,true,false,true,false"/* , null */};
+        return new String[]{"true,false,true,false,true,false"/* , null */};
     }
 
     @Override

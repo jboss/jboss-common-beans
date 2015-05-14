@@ -31,7 +31,6 @@ import org.junit.Test;
 
 /**
  * @author baranowb
- *
  */
 public class PropertyEditorFinderTestCase {
 
@@ -41,9 +40,9 @@ public class PropertyEditorFinderTestCase {
     }
 
     @Test
-    public void testPackagedEditor(){
-        DefaultPropertyEditorFinder finder =  (DefaultPropertyEditorFinder)PropertyEditorFinder.getInstance();
-        String[] packages = new String[]{ShortEditor.class.getPackage().getName(),this.getClass().getPackage().getName()};
+    public void testPackagedEditor() {
+        DefaultPropertyEditorFinder finder = (DefaultPropertyEditorFinder) PropertyEditorFinder.getInstance();
+        String[] packages = new String[]{ShortEditor.class.getPackage().getName(), this.getClass().getPackage().getName()};
         finder.setEditorSearchPackages(packages);
         PropertyEditor editor = finder.find(Uranus.class);
         assertNotNull(editor);

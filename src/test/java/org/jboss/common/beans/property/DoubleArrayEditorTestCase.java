@@ -27,18 +27,17 @@ import java.util.Comparator;
 
 /**
  * @author baranowb
- * 
  */
 public class DoubleArrayEditorTestCase extends PropertyEditorTester<double[]> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "1.0,-1.0,0.0,1000.1" };
+        return new String[]{"1.0,-1.0,0.0,1000.1"};
     }
 
     @Override
     public Object[] getOutputData() {
-        return new Object[] { new double[]{1, -1, 0, 1000.1} };
+        return new Object[]{new double[]{1, -1, 0, 1000.1}};
     }
 
     @Override
@@ -55,7 +54,7 @@ public class DoubleArrayEditorTestCase extends PropertyEditorTester<double[]> {
     public Class getType() {
         return double[].class;
     }
-    
+
     @Override
     public String logT(double[] t) {
         if (t == null) {
@@ -64,7 +63,7 @@ public class DoubleArrayEditorTestCase extends PropertyEditorTester<double[]> {
             return Arrays.toString(t);
         }
     }
-    
+
     class DoubleArrayComparator implements Comparator<double[]> {
 
         @Override

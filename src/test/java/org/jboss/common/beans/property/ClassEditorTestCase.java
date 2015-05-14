@@ -26,18 +26,17 @@ import java.util.Comparator;
 
 /**
  * @author baranowb
- * 
  */
 public class ClassEditorTestCase extends PropertyEditorTester<Class> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "java.util.Arrays" };
+        return new String[]{"java.util.Arrays"};
     }
 
     @Override
     public Object[] getOutputData() {
-        return new Object[] { java.util.Arrays.class };
+        return new Object[]{java.util.Arrays.class};
     }
 
     @Override

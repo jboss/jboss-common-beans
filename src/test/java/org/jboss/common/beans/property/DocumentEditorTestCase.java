@@ -24,7 +24,6 @@ package org.jboss.common.beans.property;
 
 import java.io.StringReader;
 import java.util.Comparator;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -33,13 +32,12 @@ import org.xml.sax.InputSource;
 
 /**
  * @author baranowb
- * 
  */
 public class DocumentEditorTestCase extends PropertyEditorTester<Document> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "<!-- header comment --><doc name='whatever'/><!-- footer comment -->" };
+        return new String[]{"<!-- header comment --><doc name='whatever'/><!-- footer comment -->"};
     }
 
     @Override
@@ -49,7 +47,7 @@ public class DocumentEditorTestCase extends PropertyEditorTester<Document> {
         StringReader sr = new StringReader(getInputData()[0]);
         InputSource is = new InputSource(sr);
         Document d = db.parse(is);
-        return new Object[] { d };
+        return new Object[]{d};
     }
 
     @Override

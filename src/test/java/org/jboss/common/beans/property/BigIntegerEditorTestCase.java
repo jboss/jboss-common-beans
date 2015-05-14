@@ -27,7 +27,6 @@ import java.util.Comparator;
 
 /**
  * @author baranowb
- * 
  */
 public class BigIntegerEditorTestCase extends PropertyEditorTester<BigInteger> {
 
@@ -35,12 +34,12 @@ public class BigIntegerEditorTestCase extends PropertyEditorTester<BigInteger> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "-1", "1234567890", "-1234567890" };
+        return new String[]{"-1", "1234567890", "-1234567890"};
     }
 
     @Override
     public Object[] getOutputData() {
-        return new Object[] { new BigInteger("-1"), new BigInteger("1234567890"), new BigInteger("-1234567890") };
+        return new Object[]{new BigInteger("-1"), new BigInteger("1234567890"), new BigInteger("-1234567890")};
     }
 
     @Override

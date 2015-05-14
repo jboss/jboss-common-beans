@@ -28,18 +28,17 @@ import java.util.Comparator;
 
 /**
  * @author baranowb
- * 
  */
 public class InetAddressArrayEditorTestCase extends PropertyEditorTester<InetAddress[]> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "127.0.0.1,localhost" };
+        return new String[]{"127.0.0.1,localhost"};
     }
 
     @Override
     public Object[] getOutputData() throws Exception {
-        return new Object[] { new InetAddress[]{ InetAddress.getByName("127.0.0.1"), InetAddress.getByName("localhost") }};
+        return new Object[]{new InetAddress[]{InetAddress.getByName("127.0.0.1"), InetAddress.getByName("localhost")}};
     }
 
     @Override
@@ -56,7 +55,7 @@ public class InetAddressArrayEditorTestCase extends PropertyEditorTester<InetAdd
     public Class getType() {
         return InetAddress[].class;
     }
-    
+
     @Override
     public String logT(InetAddress[] t) {
         if (t == null) {
@@ -70,7 +69,7 @@ public class InetAddressArrayEditorTestCase extends PropertyEditorTester<InetAdd
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
          */
         @Override

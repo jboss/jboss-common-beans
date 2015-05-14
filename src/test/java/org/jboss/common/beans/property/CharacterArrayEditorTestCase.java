@@ -27,18 +27,17 @@ import java.util.Comparator;
 
 /**
  * @author baranowb
- * 
  */
 public class CharacterArrayEditorTestCase extends PropertyEditorTester<char[]> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "A,a,Z,z" };
+        return new String[]{"A,a,Z,z"};
     }
 
     @Override
     public Object[] getOutputData() {
-        return new Object[] { new char[] { 'A', 'a', 'Z', 'z' } };
+        return new Object[]{new char[]{'A', 'a', 'Z', 'z'}};
     }
 
     @Override
@@ -64,7 +63,7 @@ public class CharacterArrayEditorTestCase extends PropertyEditorTester<char[]> {
             return Arrays.toString(t);
         }
     }
-    
+
     class CharacterArrayComparator implements Comparator<char[]> {
 
         @Override

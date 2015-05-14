@@ -27,18 +27,17 @@ import java.util.Comparator;
 
 /**
  * @author baranowb
- * 
  */
 public class LongArrayEditorTestCase extends PropertyEditorTester<long[]> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "1,-1,0,1000" };
+        return new String[]{"1,-1,0,1000"};
     }
 
     @Override
     public Object[] getOutputData() {
-        return new Object[] { new long[] { 1, -1, 0, 1000 } };
+        return new Object[]{new long[]{1, -1, 0, 1000}};
     }
 
     @Override
@@ -64,7 +63,7 @@ public class LongArrayEditorTestCase extends PropertyEditorTester<long[]> {
             return Arrays.toString(t);
         }
     }
-    
+
     class LongArrayComparator implements Comparator<long[]> {
 
         @Override
