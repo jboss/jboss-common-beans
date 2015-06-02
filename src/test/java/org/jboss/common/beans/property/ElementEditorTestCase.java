@@ -24,7 +24,6 @@ package org.jboss.common.beans.property;
 
 import java.io.StringReader;
 import java.util.Comparator;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -36,13 +35,12 @@ import org.xml.sax.InputSource;
 
 /**
  * @author baranowb
- * 
  */
 public class ElementEditorTestCase extends PropertyEditorTester<Element> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "<element>text</element>" };
+        return new String[]{"<element>text</element>"};
     }
 
     @Override
@@ -62,7 +60,7 @@ public class ElementEditorTestCase extends PropertyEditorTester<Element> {
                 break;
             }
         }
-        return new Object[] { e };
+        return new Object[]{e};
     }
 
     @Override

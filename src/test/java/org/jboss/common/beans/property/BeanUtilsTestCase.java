@@ -30,7 +30,6 @@ import org.junit.Test;
 
 /**
  * @author baranowb
- *
  */
 public class BeanUtilsTestCase {
 
@@ -47,27 +46,27 @@ public class BeanUtilsTestCase {
     }
 
     @Test
-    public void testStripPackage(){
+    public void testStripPackage() {
         final String expected = "Integer";
         Class clazz = Integer.class;
         String striped = BeanUtils.stripPackage(clazz);
-        Assert.assertEquals(expected,striped);
+        Assert.assertEquals(expected, striped);
         striped = BeanUtils.stripPackage(clazz.getName());
-        Assert.assertEquals(expected,striped);
+        Assert.assertEquals(expected, striped);
     }
 
     @Test
-    public void testStripClass(){
+    public void testStripClass() {
         final String expected = "java.lang";
         Class clazz = Integer.class;
         String striped = BeanUtils.stripClass(clazz);
-        Assert.assertEquals(expected,striped);
+        Assert.assertEquals(expected, striped);
         striped = BeanUtils.stripClass(clazz.getName());
-        Assert.assertEquals(expected,striped);
+        Assert.assertEquals(expected, striped);
     }
 
     @Test
-    public void testGetPrimitiveTypeForName(){
+    public void testGetPrimitiveTypeForName() {
         Assert.assertEquals(int.class, BeanUtils.getPrimitiveTypeForName("int"));
         Assert.assertEquals(long.class, BeanUtils.getPrimitiveTypeForName("long"));
         Assert.assertEquals(float.class, BeanUtils.getPrimitiveTypeForName("float"));
@@ -79,26 +78,26 @@ public class BeanUtilsTestCase {
     }
 
     @Test
-    public void testMapJavaBeanPropertiesSuccess() throws Exception{
+    public void testMapJavaBeanPropertiesSuccess() throws Exception {
         final TestBean testBean = new TestBean();
         Properties beanProperties = new Properties();
         final int expected_x = 1;
         final Double expected_dummy = new Double(11.1d);
         final String expected_info = "X Marks The Spot";
 
-        beanProperties.setProperty("x", ""+expected_x);
-        beanProperties.setProperty("dummy", ""+expected_dummy);
+        beanProperties.setProperty("x", "" + expected_x);
+        beanProperties.setProperty("dummy", "" + expected_dummy);
         beanProperties.setProperty("info", expected_info);
 
         BeanUtils.mapJavaBeanProperties(testBean, beanProperties);
         Assert.assertEquals(expected_x, testBean.getX());
         Assert.assertEquals(expected_dummy, testBean.getDummy());
         Assert.assertEquals(expected_info, testBean.getInfo());
-        
+
     }
 
     @Test
-    public void testMapJavaBeanPropertiesNoEditor() throws Exception{
+    public void testMapJavaBeanPropertiesNoEditor() throws Exception {
         //fail cause there wont be a bean
         final TestBean testBean = new TestBean();
         Properties beanProperties = new Properties();
@@ -106,8 +105,8 @@ public class BeanUtilsTestCase {
         final Double expected_dummy = new Double(11.1d);
         final String expected_info = "X Marks The Spot";
 
-        beanProperties.setProperty("x", ""+expected_x);
-        beanProperties.setProperty("dummy", ""+expected_dummy);
+        beanProperties.setProperty("x", "" + expected_x);
+        beanProperties.setProperty("dummy", "" + expected_dummy);
         beanProperties.setProperty("info", expected_info);
         beanProperties.setProperty("iWillFail", "xxx");
 
@@ -117,9 +116,9 @@ public class BeanUtilsTestCase {
         Assert.assertEquals(expected_info, testBean.getInfo());
         Assert.assertNull(testBean.getiWillFail());
     }
-    
+
     @Test
-    public void testMapJavaBeanPropertiesStrictPass() throws Exception{
+    public void testMapJavaBeanPropertiesStrictPass() throws Exception {
         //fail cause there wont be a bean
         TestBean testBean = new TestBean();
         Properties beanProperties = new Properties();
@@ -127,21 +126,21 @@ public class BeanUtilsTestCase {
         final Double expected_dummy = new Double(11.1d);
         final String expected_info = "X Marks The Spot";
 
-        beanProperties.setProperty("x", ""+expected_x);
-        beanProperties.setProperty("dummy", ""+expected_dummy);
+        beanProperties.setProperty("x", "" + expected_x);
+        beanProperties.setProperty("dummy", "" + expected_dummy);
         beanProperties.setProperty("info", expected_info);
         beanProperties.setProperty("iWillFail", "xxx");
         beanProperties.setProperty("iWillThrowException", "xxx");
 
-        BeanUtils.mapJavaBeanProperties(testBean, beanProperties,false);
+        BeanUtils.mapJavaBeanProperties(testBean, beanProperties, false);
         Assert.assertEquals(expected_x, testBean.getX());
         Assert.assertEquals(expected_dummy, testBean.getDummy());
         Assert.assertEquals(expected_info, testBean.getInfo());
         Assert.assertNull(testBean.getiWillFail());
     }
 
-    @Test(expected=IntrospectionException.class)
-    public void testMapJavaBeanPropertiesStrictFail() throws Exception{
+    @Test(expected = IntrospectionException.class)
+    public void testMapJavaBeanPropertiesStrictFail() throws Exception {
         //fail cause there wont be a bean
         TestBean testBean = new TestBean();
         Properties beanProperties = new Properties();
@@ -149,17 +148,17 @@ public class BeanUtilsTestCase {
         final Double expected_dummy = new Double(11.1d);
         final String expected_info = "X Marks The Spot";
 
-        beanProperties.setProperty("x", ""+expected_x);
-        beanProperties.setProperty("dummy", ""+expected_dummy);
+        beanProperties.setProperty("x", "" + expected_x);
+        beanProperties.setProperty("dummy", "" + expected_dummy);
         beanProperties.setProperty("info", expected_info);
         beanProperties.setProperty("iWillFail", "xxx");
         beanProperties.setProperty("iWillThrowException", "xxx");
-        
-        BeanUtils.mapJavaBeanProperties(testBean, beanProperties,true);
+
+        BeanUtils.mapJavaBeanProperties(testBean, beanProperties, true);
     }
 
-    @Test(expected=IntrospectionException.class)
-    public void testMapJavaBeanPropertiesStrictFail2() throws Exception{
+    @Test(expected = IntrospectionException.class)
+    public void testMapJavaBeanPropertiesStrictFail2() throws Exception {
         //fail cause there wont be a bean
         TestBean testBean = new TestBean();
         Properties beanProperties = new Properties();
@@ -167,19 +166,19 @@ public class BeanUtilsTestCase {
         final Double expected_dummy = new Double(11.1d);
         final String expected_info = "X Marks The Spot";
 
-        beanProperties.setProperty("x", ""+expected_x);
-        beanProperties.setProperty("dummy", ""+expected_dummy);
+        beanProperties.setProperty("x", "" + expected_x);
+        beanProperties.setProperty("dummy", "" + expected_dummy);
         beanProperties.setProperty("info", expected_info);
         beanProperties.setProperty("iWillFail", "xxx");
         beanProperties.setProperty("iWillThrowException", "xxx");
-        
+
         BeanUtils.mapJavaBeanProperties(testBean, beanProperties);
-    }    
+    }
 
     @Test
-    public void testConvertValue() throws Exception{
-       final Double expected_double = new Double(11.1d);
-       final Double result = (Double) BeanUtils.convertValue(expected_double.toString(), expected_double.getClass().getName());
-       Assert.assertEquals(expected_double, result);
+    public void testConvertValue() throws Exception {
+        final Double expected_double = new Double(11.1d);
+        final Double result = (Double) BeanUtils.convertValue(expected_double.toString(), expected_double.getClass().getName());
+        Assert.assertEquals(expected_double, result);
     }
 }

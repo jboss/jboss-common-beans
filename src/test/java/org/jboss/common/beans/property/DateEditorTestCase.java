@@ -37,13 +37,12 @@ import org.junit.Test;
 
 /**
  * @author baranowb
- * 
  */
 public class DateEditorTestCase extends PropertyEditorTester<Date> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "Jan 4, 2005", "Tue Jan  4 23:38:21 PST 2005", "Tue, 04 Jan 2005 23:38:48 -0800" };
+        return new String[]{"Jan 4, 2005", "Tue Jan  4 23:38:21 PST 2005", "Tue, 04 Jan 2005 23:38:48 -0800"};
     }
 
     @Override
@@ -58,7 +57,7 @@ public class DateEditorTestCase extends PropertyEditorTester<Date> {
         Date date2 = calendar.getTime();
         calendar.set(2005, 0, 4, 23, 38, 48);
         Date date3 = calendar.getTime();
-        return new Object[] { date1, date2, date3 };
+        return new Object[]{date1, date2, date3};
     }
 
     @Override

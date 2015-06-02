@@ -26,11 +26,9 @@ import java.beans.PropertyEditorManager;
 import java.lang.reflect.Array;
 import java.util.Iterator;
 import java.util.ServiceLoader;
-import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.jboss.common.beans.property.finder.DefaultPropertyEditorFinder;
 import org.jboss.common.beans.property.finder.PropertyEditorFinder;
 import org.jboss.common.beans.property.token.ArrayTokenizer;
 import org.jboss.common.beans.property.token.StrictTokenizer;

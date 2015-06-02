@@ -27,18 +27,17 @@ import java.util.Locale;
 
 /**
  * @author baranowb
- * 
  */
 public class LocaleEditorTestCase extends PropertyEditorTester<Locale> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { Locale.getDefault().toString(), "ja_JP" };
+        return new String[]{Locale.getDefault().toString(), "ja_JP"};
     }
 
     @Override
     public Object[] getOutputData() throws Exception {
-        return new Object[] { Locale.getDefault(), Locale.JAPAN };
+        return new Object[]{Locale.getDefault(), Locale.JAPAN};
     }
 
     @Override

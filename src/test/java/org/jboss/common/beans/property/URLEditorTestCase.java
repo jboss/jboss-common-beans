@@ -28,19 +28,28 @@ import java.util.Comparator;
 
 /**
  * @author baranowb
- * 
  */
 public class URLEditorTestCase extends PropertyEditorTester<URL> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "http://www.jboss.org", "file:/path with space/tst.xml" };
+        if (isOSWindows()) {
+            return new String[]{"http://www.jboss.org", "file:/X:/path with space/tst.xml"};
+        } else {
+            return new String[]{"http://www.jboss.org", "file:/path with space/tst.xml"};
+        }
     }
 
     @Override
     public Object[] getOutputData() throws Exception {
-        return new Object[] { new URL("http://www.jboss.org"),
-                new File("/path with space/tst.xml").getCanonicalFile().toURI().toURL() };
+        if (isOSWindows()) {
+            return new Object[]{new URL("http://www.jboss.org"),
+                    new File("X:/path with space/tst.xml").getCanonicalFile().toURI().toURL()};
+        } else {
+            return new Object[]{new URL("http://www.jboss.org"),
+                    new File("/path with space/tst.xml").getCanonicalFile().toURI().toURL()};
+        }
+
     }
 
     @Override

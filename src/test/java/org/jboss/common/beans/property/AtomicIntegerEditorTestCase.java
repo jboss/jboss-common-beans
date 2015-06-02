@@ -27,18 +27,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author baranowb
- * 
  */
 public class AtomicIntegerEditorTestCase extends PropertyEditorTester<AtomicInteger> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "-1", "0", "1" };
+        return new String[]{"-1", "0", "1"};
     }
 
     @Override
     public Object[] getOutputData() {
-        return new Object[] { new AtomicInteger(-1), new AtomicInteger(0), new AtomicInteger(1) };
+        return new Object[]{new AtomicInteger(-1), new AtomicInteger(0), new AtomicInteger(1)};
     }
 
     @Override

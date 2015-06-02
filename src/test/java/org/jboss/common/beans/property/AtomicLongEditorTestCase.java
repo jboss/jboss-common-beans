@@ -27,18 +27,17 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * @author baranowb
- * 
  */
 public class AtomicLongEditorTestCase extends PropertyEditorTester<AtomicLong> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "-1", "0", "1" };
+        return new String[]{"-1", "0", "1"};
     }
 
     @Override
     public Object[] getOutputData() {
-        return new Object[] { new AtomicLong(-1), new AtomicLong(0), new AtomicLong(1) };
+        return new Object[]{new AtomicLong(-1), new AtomicLong(0), new AtomicLong(1)};
     }
 
     @Override
@@ -52,7 +51,7 @@ public class AtomicLongEditorTestCase extends PropertyEditorTester<AtomicLong> {
     }
 
     @Override
-    public Class getType() {
+    public Class<AtomicLong> getType() {
         return AtomicLong.class;
     }
 

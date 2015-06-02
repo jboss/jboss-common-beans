@@ -6,13 +6,14 @@
     ANY WARRANTY; without even the implied warranty of ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU ~ Lesser General Public 
     License for more details. ~ ~ You should have received a copy of the GNU Lesser General Public ~ License along with this software; if not, write 
     to the Free ~ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA ~ 02110-1301 USA, or see the FSF site: http://www.fsf.org. -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.jboss</groupId>
         <artifactId>jboss-parent</artifactId>
-        <version>8</version>
+        <version>17</version>
     </parent>
 
     <groupId>org.jboss.common</groupId>
@@ -36,25 +37,17 @@
         <developerConnection>scm:git:git@github.com:jboss/jboss-common-beans.git</developerConnection>
         <url>https://github.com/jboss/jboss-common-beans</url>
     </scm>
-    
+
     <properties>
-        <maven.min.version>2.0.11</maven.min.version>
-        <!-- Build configuration -->
-        <maven.compiler.source>1.6</maven.compiler.source>
-        <maven.compiler.target>1.6</maven.compiler.target>
-        <!-- Options to override the compiler arguments directly on the compiler arument line to separate between what the IDE understands as the source 
-            level and what the Maven compiler actually use. -->
-        <maven.compiler.argument.target>${maven.compiler.target}</maven.compiler.argument.target>
-        <maven.compiler.argument.source>${maven.compiler.source}</maven.compiler.argument.source>
-        
+
         <!-- Dependency versions. Please keep alphabetical. Each version property should be of the form "version.<groupId>". For example: <version.org.jboss.as> 
             In cases where multiple artifacts use the same groupId but have different versions, add the artifactId or other qualifier to the property name. 
             For example: <version.org.jboss.as.console> -->
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <version.compiler.plugin>3.1</version.compiler.plugin>
+        <version.org.wildfly.checkstyle-config>1.0.3.Final</version.org.wildfly.checkstyle-config>
+        <version.junit>4.12</version.junit>
 
-        <!-- checkstyle, 2.5 has some bug wrt to configLocation... It requires checkstyle to be in artifact... -->
-        <version.checkstyle.plugin>2.4</version.checkstyle.plugin>
-        <version.junit>4.10</version.junit>
-        
         <!-- Checkstyle configuration -->
         <linkXRef>false</linkXRef>
     </properties>
@@ -71,34 +64,8 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>buildnumber-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>create</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <doCheck>false</doCheck>
-                    <doUpdate>false</doUpdate>
-                    <revisionOnScmFailure>UNKNOWN</revisionOnScmFailure>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${version.checkstyle.plugin}</version>
-                <configuration>
-                    <configLocation>checkstyle.xml</configLocation>
-                    <consoleOutput>true</consoleOutput>
-                    <failsOnError>true</failsOnError>
-                    <enableRSS>false</enableRSS>
-                    <enableRSSSummary>false</enableRSSSummary>
-                    <useFile />
-                </configuration>
                 <executions>
                     <execution>
                         <id>check-style</id>
@@ -112,9 +79,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.11</version>
+                <version>${version.failsafe.plugin}</version>
                 <configuration>
-                    <argLine>-Djava.security.manager -Djava.security.policy=${basedir}/src/test/resources/java.policy -Djava.security.debug=access,failure -Dmaven.repo.local=${settings.localRepository}</argLine>
+                    <argLine>-Djava.security.manager -Djava.security.policy=${basedir}/src/test/resources/java.policy -Djava.security.debug=access,failure
+                        -Dmaven.repo.local=${settings.localRepository}
+                    </argLine>
+                    <redirectTestOutputToFile>true</redirectTestOutputToFile>
                 </configuration>
                 <executions>
                     <execution>
@@ -128,70 +98,29 @@
         </plugins>
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>${version.jar.plugin}</version>
-                    <configuration>
-                        <archive>
-                            <manifest>
-                                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                            </manifest>
-                            <manifestEntries>
-                                <!--TODO -->
-                            </manifestEntries>
-                            <manifestSections>
-                                <manifestSection>
-                                    <name>Build-Information</name>
-                                    <manifestEntries>
-                                        <Maven-Version>${maven.version}</Maven-Version>
-                                        <Java-Version>${java.version}</Java-Version>
-                                        <Java-Vendor>${java.vendor}</Java-Vendor>
-                                        <Os-Name>${os.name}</Os-Name>
-                                        <Os-Arch>${os.arch}</Os-Arch>
-                                        <Os-Version>${os.version}</Os-Version>
-                                        <Scm-Url>${jboss.as.scm.url}</Scm-Url>
-                                        <Scm-Connection>${jboss.as.scm.connection}</Scm-Connection>
-                                        <Build-Time>${build.timestamp}</Build-Time>
-                                        <Scm-Version>${buildNumber}</Scm-Version>
-                                    </manifestEntries>
-                                </manifestSection>
-                            </manifestSections>
-                        </archive>
-                    </configuration>
-                </plugin>
-
                 <!-- Checkstyle -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
                     <version>${version.checkstyle.plugin}</version>
                     <configuration>
-                        <configLocation>checkstyle.xml</configLocation>
+                        <configLocation>wildfly-checkstyle/checkstyle.xml</configLocation>
                         <consoleOutput>true</consoleOutput>
                         <failsOnError>true</failsOnError>
-                        <useFile />
+                        <enableRSS>false</enableRSS>
+                        <useFile/>
+                        <includeTestSourceDirectory>true</includeTestSourceDirectory>
                     </configuration>
-                    <executions>
-                        <execution>
-                            <id>check-style</id>
-                            <phase>compile</phase>
-                            <goals>
-                                <goal>checkstyle</goal>
-                            </goals>
-                        </execution>
-                    </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.wildfly.checkstyle</groupId>
+                            <artifactId>wildfly-checkstyle-config</artifactId>
+                            <version>${version.org.wildfly.checkstyle-config}</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
             </plugins>
         </pluginManagement>
-        <extensions>
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-webdav-jackrabbit</artifactId>
-                <version>1.0-beta-7</version>
-            </extension>
-        </extensions>
     </build>
 
     <repositories>

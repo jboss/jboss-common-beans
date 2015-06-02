@@ -27,25 +27,24 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @author baranowb
- * 
  */
 public class AtomicBooleanEditorTestCase extends PropertyEditorTester<AtomicBoolean> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "true", "false", "TRUE", "FALSE", "tRuE", "FaLsE"/* , null */};
+        return new String[]{"true", "false", "TRUE", "FALSE", "tRuE", "FaLsE"/* , null */};
     }
 
     @Override
     public Object[] getOutputData() {
-        return new Object[] { new AtomicBoolean(Boolean.TRUE), new AtomicBoolean(Boolean.FALSE),
+        return new Object[]{new AtomicBoolean(Boolean.TRUE), new AtomicBoolean(Boolean.FALSE),
                 new AtomicBoolean(Boolean.TRUE), new AtomicBoolean(Boolean.FALSE), new AtomicBoolean(Boolean.TRUE),
                 new AtomicBoolean(Boolean.FALSE) /* , new AtomicBoolean(Boolean.FALSE) */};
     }
 
     @Override
     public String[] getConvertedToText() {
-        return new String[] { "true", "false", "true", "false", "true", "false"/* , null */};
+        return new String[]{"true", "false", "true", "false", "true", "false"/* , null */};
     }
 
     @Override

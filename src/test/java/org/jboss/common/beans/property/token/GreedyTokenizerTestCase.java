@@ -27,13 +27,13 @@ import org.junit.Test;
 
 /**
  * @author baranowb
- *
  */
 public class GreedyTokenizerTestCase {
     private final String string = "aa,bbb\rxxx zxcv\t\tnnn\nn zzz";
-    private final String expected[] = new String[]{"aa", "bbb", "xxx", "zxcv", "nnn", "n", "zzz"};
+    private final String[] expected = {"aa", "bbb", "xxx", "zxcv", "nnn", "n", "zzz"};
+
     @Test
-    public void testGreediness(){
+    public void testGreediness() {
         //, \t\r\n
         GreedyTokenizer greedyTokenizer = new GreedyTokenizer();
         final String[] result = greedyTokenizer.tokenize(string);

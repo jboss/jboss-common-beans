@@ -27,23 +27,22 @@ import java.util.Comparator;
 
 /**
  * @author baranowb
- * 
  */
 public class ByteArrayEditorTestCase extends PropertyEditorTester<byte[]> {
 
     @Override
     public String[] getInputData() {
-        return new String[] { "1,-1,0,0x1A" };
+        return new String[]{"1,-1,0,0x1A"};
     }
 
     @Override
     public Object[] getOutputData() {
-        return new Object[] { new byte[] { 1, -1, 0, 0x1A } };
+        return new Object[]{new byte[]{1, -1, 0, 0x1A}};
     }
 
     @Override
     public String[] getConvertedToText() {
-        return new String[] { "1,-1,0,26" };
+        return new String[]{"1,-1,0,26"};
     }
 
     @Override
@@ -55,7 +54,7 @@ public class ByteArrayEditorTestCase extends PropertyEditorTester<byte[]> {
     public Class getType() {
         return byte[].class;
     }
-    
+
     @Override
     public String logT(byte[] t) {
         if (t == null) {
