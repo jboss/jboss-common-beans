@@ -24,7 +24,7 @@ package org.jboss.common.beans.property;
 /**
  * A property editor for {@link java.lang.Character}.
  *
- * @todo REVIEW: look at possibly parsing escape sequences?
+ * TODO REVIEW: look at possibly parsing escape sequences?
  * @author adrian@jboss.org
  */
 public class CharacterEditor extends PropertyEditorSupport<Character> {
