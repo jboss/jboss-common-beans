@@ -31,7 +31,7 @@ import java.net.URLDecoder;
 /**
  * A property editor for {@link java.net.URL}.
  *
- * @baranowb
+ * @author baranowb
  */
 public class URLEditor extends PropertyEditorSupport<URL> {
 

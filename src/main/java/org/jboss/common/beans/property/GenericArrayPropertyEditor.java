@@ -40,8 +40,8 @@ import org.jboss.common.beans.property.token.StrictTokenizer;
  * This class is not registered as property editor in {@link PropertyEditorManager}. It is created at runtime in following
  * condition:
  * <ul>
- * <li>Any of {@link PropertyEditors} fetch methods is passed array type for which there is no editor</li>
- * <li> {@link PropertyEditors} or {@link PropertyEditorManager} can access editor for {@link Class#getComponentType}.</li>
+ * <li>Any of {@link PropertyEditorFinder} fetch methods is passed array type for which there is no editor</li>
+ * <li> {@link PropertyEditorFinder} or {@link PropertyEditorManager} can access editor for {@link Class#getComponentType}.</li>
  * </ul>
  *
  * @author baranowb
@@ -54,7 +54,7 @@ public class GenericArrayPropertyEditor<T> extends PropertyEditorSupport<T> {
     private final Class<?> cellType;
 
     /**
-     * @param type
+     * @param initType
      */
     public GenericArrayPropertyEditor(Class<T> initType) {
         super(initType);

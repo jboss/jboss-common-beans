@@ -32,7 +32,7 @@ import javax.management.ObjectName;
 public class ObjectNameEditor extends PropertyEditorSupport<ObjectName> {
 
     /**
-     * @param type
+     *
      */
     public ObjectNameEditor() {
         super(ObjectName.class);
@@ -40,7 +40,6 @@ public class ObjectNameEditor extends PropertyEditorSupport<ObjectName> {
     }
 
     /**
-     * @param type
      * @param source
      */
     public ObjectNameEditor(Object source) {

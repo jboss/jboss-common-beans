@@ -25,7 +25,7 @@ package org.jboss.common.beans.property;
 /**
  * A property editor for char[].
  *
- * @todo REVIEW: look at possibly parsing escape sequences?
+ * TODO REVIEW: look at possibly parsing escape sequences?
  * @author baranowb
  */
 public class CharacterArrayEditor extends GenericArrayPropertyEditor<char[]> {
