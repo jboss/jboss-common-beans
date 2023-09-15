@@ -46,7 +46,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <version.compiler.plugin>3.1</version.compiler.plugin>
         <version.org.wildfly.checkstyle-config>1.0.8.Final</version.org.wildfly.checkstyle-config>
-        <version.junit>4.12</version.junit>
+        <version.junit>4.13.1</version.junit>
 
         <version.surefire.plugin>2.18.1</version.surefire.plugin>
         <version.failsafe.plugin>${version.surefire.plugin}</version.failsafe.plugin>
