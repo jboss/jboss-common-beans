@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.jboss</groupId>
         <artifactId>jboss-parent</artifactId>
-        <version>17</version>
+        <version>39</version>
     </parent>
 
     <groupId>org.jboss.common</groupId>
@@ -45,8 +45,11 @@
             For example: <version.org.jboss.as.console> -->
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <version.compiler.plugin>3.1</version.compiler.plugin>
-        <version.org.wildfly.checkstyle-config>1.0.3.Final</version.org.wildfly.checkstyle-config>
+        <version.org.wildfly.checkstyle-config>1.0.8.Final</version.org.wildfly.checkstyle-config>
         <version.junit>4.12</version.junit>
+
+        <version.surefire.plugin>2.18.1</version.surefire.plugin>
+        <version.failsafe.plugin>${version.surefire.plugin}</version.failsafe.plugin>
 
         <!-- Checkstyle configuration -->
         <linkXRef>false</linkXRef>
