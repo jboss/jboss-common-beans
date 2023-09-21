@@ -9,5 +9,5 @@ which ease tasks related to property edition.
 
 License
 -------
-* [GNU Lesser General Public License Version 2.1](http://www.gnu.org/licenses/lgpl-2.1-standalone.html)
+* [Apache License Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
